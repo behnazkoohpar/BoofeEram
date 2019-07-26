@@ -128,4 +128,7 @@
     <string name="namePersonel">نام پرسنل:</string>
     <string name="fromTime">از ساعت</string>
     <string name="toTime">تا ساعت</string>
+    <string name="data_incorrect_locker">شماره دستبند را وارد کنید</string>
+    <string name="data_incorrect_card">شماره کارت را وارد کنید</string>
+    <string name="data_incorrect_personeli">شماره پرسنلی را وارد کنید</string>
 </resources>

@@ -251,6 +251,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             e.printStackTrace();
         }
     }
+
     @Override
     public void setFactorAzad() {
         try {
@@ -270,6 +271,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             e.printStackTrace();
         }
     }
+
     @Override
     public void setFactorCard() {
         try {
@@ -304,4 +306,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     }
 
+
+    @Override
+    public void openStartActivity() {
+        startActivity(StartActivity.getStartIntent(MainActivity.this));
+        finish();
+    }
 }

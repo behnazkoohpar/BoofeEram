@@ -24,15 +24,14 @@ public interface AppConstants {
     int API_CALL_PAZIRESH = 1006;
     int API_CALL_LOCKER_INFO = 1007;
     int API_CALL_HISTORY = 1008;
-    int API_CALL_HISTORY2 = 1012;
-    int API_CALL_HISTORY3 = 1013;
     int API_CALL_CHECK_CARD = 1009;
     int API_CALL_STUFF_LIST = 1010;
     int API_CALL_SET_FACTOR = 1011;
     int API_CALL_LIST_FACTOR = 1012;
+    int API_CALL_HISTORY3 = 1013;
     int API_CALL_CHECK_PERSON = 1014;
     int API_CALL_SET_FACTOR_AZAD = 1015;
-
+    int API_CALL_HISTORY2 = 1016;
 
     String REQUEST_KEY_USER_NAME = "user_name";
     String REQUEST_KEY_PASSWORD = "password";

@@ -1,6 +1,5 @@
 package com.farzam.rest.ui.start;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -14,7 +13,6 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 
 import com.farzam.rest.BR;
 import com.farzam.rest.R;
@@ -73,25 +71,6 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         mActivityStartBinding.listPersoneli.setVisibility(View.GONE);
         mActivityStartBinding.nv.setNavigationItemSelectedListener(this);
         initView();
-//        mActivityStartBinding.tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-//
-//            @Override
-//            public void onTabChanged(String tabId) {
-//
-//                for (int i = 0; i < mActivityStartBinding.tabHost.getTabWidget().getChildCount(); i++) {
-//                    mActivityStartBinding.tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#c2c2c2")); // unselected
-//                    TextView tv = (TextView) mActivityStartBinding.tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title); //Unselected Tabs
-//                    tv.setTextColor(Color.parseColor("#ffffff"));
-//                    tv.setTypeface(typeface);
-//                }
-//
-//                mActivityStartBinding.tabHost.getTabWidget().getChildAt(mActivityStartBinding.tabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#fbb747")); // selected
-//                TextView tv = (TextView) mActivityStartBinding.tabHost.getCurrentTabView().findViewById(android.R.id.title); //for Selected Tab
-//                tv.setTextColor(Color.parseColor("#ffffff"));
-//                tv.setTypeface(typeface);
-//
-//            }
-//        });
     }
 
     private void initView() {
@@ -101,33 +80,6 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         if (mStartViewModel.getDataManager().getPrefKeyFactor()) {
             mActivityStartBinding.nv.getMenu().findItem(R.id.nav_list_factor).setVisible(false);
         }
-//        TabHost host = (TabHost) findViewById(R.id.tabHost);
-//        host.setup();
-//
-//        //Tab 1
-//        TabHost.TabSpec spec = host.newTabSpec("شماره دستبند");
-//        spec.setContent(R.id.tab1);
-//        spec.setIndicator("شماره دستبند");
-//        host.addTab(spec);
-//
-//        //Tab 2
-//        spec = host.newTabSpec("شماره کارت");
-//        spec.setContent(R.id.tab2);
-//        spec.setIndicator("شماره کارت");
-//        host.addTab(spec);
-//
-//        //Tab 3
-//        spec = host.newTabSpec("شماره پرسنل");
-//        spec.setContent(R.id.tab3);
-//        spec.setIndicator("شماره پرسنل");
-//        host.addTab(spec);
-//
-//        //Tab 4
-//        spec = host.newTabSpec("آزاد");
-//        spec.setContent(R.id.tab4);
-//        spec.setIndicator("آزاد");
-//        host.addTab(spec);
-
     }
 
     public static Intent getStartIntent(Context context) {
@@ -147,33 +99,6 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     @Override
     public int getLayoutId() {
         return R.layout.activity_start;
-    }
-
-//    public static void hideKeyboard(Activity activity) {
-//        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-//        //Find the currently focused view, so we can grab the correct window token from it.
-//        View view = activity.getCurrentFocus();
-//        //If no view currently has focus, create a new one, just so we can grab a window token from it
-//        if (view == null) {
-//            view = new View(activity);
-//        }
-//        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//    }
-
-    @Override
-    public void callLockerInfo() {
-        try {
-            hideKeyboard();
-            HashMap<String, String> map = new HashMap<>();
-            map.put(REQUEST_KEY_LOCKER_NUMBER, mActivityStartBinding.numberLocker.getText().toString());
-            map.put(REQUEST_KEY_ORGANIZATION_UNIT, mStartViewModel.getDataManager().getOrganizationalPosition());
-            if (LOGTRUE)
-                Log.d("mPARAMS :::::::: ", map.toString());
-            mStartViewModel.callLocker(iCallApi, StartActivity.this, map);
-        } catch (Exception e) {
-            CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -215,13 +140,35 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     @Override
+    public void setDataNull() {
+
+        mActivityStartBinding.memberShip.setText("");
+        mActivityStartBinding.numberLocker.setText("");
+        mActivityStartBinding.personNumber.setText("");
+        mActivityStartBinding.locker.setText("");
+        mActivityStartBinding.namelocker.setText("");
+        mActivityStartBinding.namePerson.setText("");
+        mActivityStartBinding.nameP.setText("");
+        mActivityStartBinding.numberCard.setText("");
+        mActivityStartBinding.namefull.setText("");
+        mActivityStartBinding.listCard.setAdapter(null);
+        mActivityStartBinding.list.setAdapter(null);
+        mActivityStartBinding.listPersoneli.setAdapter(null);
+        membershipFileID = null;
+    }
+
+    @Override
     public void getHistory() {
         try {
-            HashMap<String, String> map = new HashMap<>();
-            map.put(REQUEST_KEY_MEMBERSHIP_FILE_ID, membershipFileID);
-            if (LOGTRUE)
-                Log.d("mPARAMS :::::::: ", map.toString());
-            mStartViewModel.callHistory(iCallApi, StartActivity.this, map);
+            if (membershipFileID != null) {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_MEMBERSHIP_FILE_ID, membershipFileID);
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callHistory(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_locker), null, null);
+            }
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -244,14 +191,40 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     @Override
+    public void callLockerInfo() {
+        try {
+            if (!mActivityStartBinding.numberLocker.getText().toString().isEmpty()) {
+                hideKeyboard();
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_LOCKER_NUMBER, mActivityStartBinding.numberLocker.getText().toString());
+                map.put(REQUEST_KEY_ORGANIZATION_UNIT, mStartViewModel.getDataManager().getOrganizationalPosition());
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callLocker(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_locker), null, null);
+            }
+        } catch (
+                Exception e) {
+            CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
     public void callCheckCard() {
         try {
-            hideKeyboard();
-            HashMap<String, String> map = new HashMap<>();
-            map.put(REQUEST_KEY_CARD_NUMBER, mActivityStartBinding.memberShip.getText().toString());
-            if (LOGTRUE)
-                Log.d("mPARAMS :::::::: ", map.toString());
-            mStartViewModel.callCard(iCallApi, StartActivity.this, map);
+            if (!mActivityStartBinding.memberShip.getText().toString().isEmpty()) {
+                hideKeyboard();
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_CARD_NUMBER, mActivityStartBinding.memberShip.getText().toString());
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callCard(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_card), null, null);
+            }
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -261,12 +234,16 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     @Override
     public void callPersonInfo() {
         try {
-            hideKeyboard();
-            HashMap<String, String> map = new HashMap<>();
-            map.put(REQUEST_KEY_CARD_NUMBER, mActivityStartBinding.personNumber.getText().toString());
-            if (LOGTRUE)
-                Log.d("mPARAMS :::::::: ", map.toString());
-            mStartViewModel.callPerson(iCallApi, StartActivity.this, map);
+            if (!mActivityStartBinding.personNumber.getText().toString().isEmpty()) {
+                hideKeyboard();
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_CARD_NUMBER, mActivityStartBinding.personNumber.getText().toString());
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callPerson(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_personeli), null, null);
+            }
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -276,11 +253,15 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     @Override
     public void getHistoryCard() {
         try {
-            HashMap<String, String> map = new HashMap<>();
-            map.put(REQUEST_KEY_MEMBERSHIP_FILE_ID, membershipFileID);
-            if (LOGTRUE)
-                Log.d("mPARAMS :::::::: ", map.toString());
-            mStartViewModel.callHistoryCard(iCallApi, StartActivity.this, map);
+            if (membershipFileID != null) {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_MEMBERSHIP_FILE_ID, membershipFileID);
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callHistoryCard(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_card), null, null);
+            }
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -290,11 +271,15 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     @Override
     public void getHistoryPersonli() {
         try {
-            HashMap<String, String> map = new HashMap<>();
-            map.put(REQUEST_KEY_MEMBERSHIP_FILE_ID, membershipFileID);
-            if (LOGTRUE)
-                Log.d("mPARAMS :::::::: ", map.toString());
-            mStartViewModel.callHistoryPersoneli(iCallApi, StartActivity.this, map);
+            if (membershipFileID != null) {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_MEMBERSHIP_FILE_ID, membershipFileID);
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callHistoryPersoneli(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_personeli), null, null);
+            }
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();

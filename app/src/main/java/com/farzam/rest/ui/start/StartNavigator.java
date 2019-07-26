@@ -35,4 +35,7 @@ public interface StartNavigator {
     void openMenu();
 
     void callPersonInfo();
+
+    void setDataNull();
+
 }

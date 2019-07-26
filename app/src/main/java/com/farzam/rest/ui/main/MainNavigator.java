@@ -19,4 +19,7 @@ public interface MainNavigator {
     void setFactorAzad();
     void setFactorPerson();
     void setFactorCard();
+
+    void openStartActivity();
+
 }

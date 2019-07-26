@@ -134,12 +134,12 @@ public class MainViewModel extends BaseViewModel<MainNavigator> implements AppCo
                         CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.factor_ok), null, new CommonUtils.IL() {
                             @Override
                             public void onSuccess() {
-                                mActivity.finish();
+                                getNavigator().openStartActivity();
                             }
 
                             @Override
                             public void onCancel() {
-                                mActivity.finish();
+                                getNavigator().openStartActivity();
                             }
                         });
 
@@ -148,12 +148,12 @@ public class MainViewModel extends BaseViewModel<MainNavigator> implements AppCo
                         CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.factor_ok), null, new CommonUtils.IL() {
                             @Override
                             public void onSuccess() {
-                                mActivity.finish();
+                                getNavigator().openStartActivity();
                             }
 
                             @Override
                             public void onCancel() {
-                                mActivity.finish();
+                                getNavigator().openStartActivity();
                             }
                         });
 

@@ -141,153 +141,6 @@
 
                 </RelativeLayout>
 
-                <LinearLayout
-                    android:id="@+id/tabPersoneli"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/radio"
-                    android:background="@color/colorPrimary"
-                    android:orientation="vertical"
-                    android:visibility="@{viewModel.showPersoneli ? View.VISIBLE : View.GONE}">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/txtPersonNumber"
-                            style="@style/AppTheme.font"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
-                            android:text="@string/number_person"
-                            android:textColor="@color/white" />
-
-                        <EditText
-                            android:id="@+id/personNumber"
-                            style="@style/AppTheme.EditTextWhite"
-                            android:layout_width="150dp"
-                            android:layout_height="50dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
-                            android:layout_toLeftOf="@+id/txtPersonNumber"
-                            android:inputType="number"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/margin_large"/>
-
-                        <Button
-                            android:id="@+id/btnCheckPersonNumber"
-                            style="@style/AppTheme.ButtonOrange"
-                            android:layout_width="220dp"
-                            android:layout_height="55dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/margin_large"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="30dp"
-                            android:layout_toLeftOf="@+id/personNumber"
-                            android:onClick="@{()->viewModel.callPersonInfo()}"
-                            android:text="@string/check" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/detailPersoneli"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@+id/btnCheckMemberShip">
-
-                        <TextView
-                            android:id="@+id/namePersonel"
-                            style="@style/AppTheme.font"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
-                            android:text="@string/namePersonel"
-                            android:textColor="@color/white"
-                            android:textSize="20dp" />
-
-
-                        <TextView
-                            android:id="@+id/namePerson"
-                            style="@style/AppTheme.font"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
-                            android:layout_toLeftOf="@+id/namePersonel"
-                            android:textColor="@color/white"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:id="@+id/nameP"
-                            style="@style/AppTheme.font"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
-                            android:layout_toLeftOf="@+id/namePerson"
-                            android:textColor="@color/white"
-                            android:textSize="20dp" />
-
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <Button
-                            android:id="@+id/ok3"
-                            style="@style/AppTheme.ButtonOrange"
-                            android:layout_width="220dp"
-                            android:layout_height="55dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="@dimen/margin_large"
-                            android:onClick="@{()->viewModel.getHistoryPersoneli()}"
-                            android:text="@string/show_detail"
-                            android:textSize="@dimen/margin_normal"
-                            android:visibility="gone" />
-
-                        <Button
-                            android:id="@+id/btnSale3"
-                            style="@style/AppTheme.ButtonOrange"
-                            android:layout_width="220dp"
-                            android:layout_height="55dp"
-                            android:layout_marginLeft="@dimen/margin_large"
-                            android:layout_toRightOf="@+id/ok3"
-                            android:enabled="false"
-                            android:onClick="@{()->viewModel.showSalePersoneli()}"
-                            android:text="@string/sale"
-                            android:textSize="@dimen/margin_normal"
-                            android:visibility="gone" />
-                    </RelativeLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/listPersoneli"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small" />
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/tabAzad"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/radio"
-                    android:background="@color/colorPrimary"
-                    android:orientation="vertical"
-                    android:visibility="@{viewModel.showAzad? View.VISIBLE : View.GONE}">
-
-
-                </RelativeLayout>
-
                 <RelativeLayout
                     android:id="@+id/tabLocker"
                     android:layout_width="match_parent"
@@ -430,7 +283,6 @@
                             android:layout_marginTop="@dimen/margin_small" />
                     </LinearLayout>
                 </RelativeLayout>
-
                 <LinearLayout
                     android:id="@+id/tabCard"
                     android:layout_width="match_parent"
@@ -568,6 +420,152 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_small" />
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/tabPersoneli"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/radio"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.showPersoneli ? View.VISIBLE : View.GONE}">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtPersonNumber"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:text="@string/number_person"
+                            android:textColor="@color/white" />
+
+                        <EditText
+                            android:id="@+id/personNumber"
+                            style="@style/AppTheme.EditTextWhite"
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_toLeftOf="@+id/txtPersonNumber"
+                            android:inputType="number"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/margin_large"/>
+
+                        <Button
+                            android:id="@+id/btnCheckPersonNumber"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="55dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/personNumber"
+                            android:onClick="@{()->viewModel.callPersonInfo()}"
+                            android:text="@string/check" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/detailPersoneli"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/btnCheckMemberShip">
+
+                        <TextView
+                            android:id="@+id/namePersonel"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:text="@string/namePersonel"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+
+                        <TextView
+                            android:id="@+id/namePerson"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_toLeftOf="@+id/namePersonel"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/nameP"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_toLeftOf="@+id/namePerson"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:id="@+id/ok3"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="55dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="@dimen/margin_large"
+                            android:onClick="@{()->viewModel.getHistoryPersoneli()}"
+                            android:text="@string/show_detail"
+                            android:textSize="@dimen/margin_normal"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/btnSale3"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="55dp"
+                            android:layout_marginLeft="@dimen/margin_large"
+                            android:layout_toRightOf="@+id/ok3"
+                            android:enabled="false"
+                            android:onClick="@{()->viewModel.showSalePersoneli()}"
+                            android:text="@string/sale"
+                            android:textSize="@dimen/margin_normal"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/listPersoneli"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small" />
+                </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/tabAzad"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/radio"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.showAzad? View.VISIBLE : View.GONE}">
+
+
+                </RelativeLayout>
 
             </RelativeLayout>
         </ScrollView>

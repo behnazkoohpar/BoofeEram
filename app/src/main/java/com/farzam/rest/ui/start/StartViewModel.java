@@ -2,7 +2,9 @@ package com.farzam.rest.ui.start;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Observable;
 import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
 
 import com.farzam.rest.R;
 import com.farzam.rest.api.BaseCallback;
@@ -162,7 +164,17 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
             Response response = (Response) mObject;
             Data data = (Data) response.body();
             if (data.getSettings().getSuccess().equalsIgnoreCase("0")) {
-                CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), data.getSettings().getMessage(), null, null);
+                CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), data.getSettings().getMessage(), null, new CommonUtils.IL() {
+                    @Override
+                    public void onSuccess() {
+                        getNavigator().setDataNull();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        getNavigator().setDataNull();
+                    }
+                });
             } else {
                 switch (requestCode) {
                     case API_CALL_LOCKER_INFO:
@@ -223,6 +235,8 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
         StartActivity.azadSelected = false;
         StartActivity.lockerSelected = true;
         StartActivity.personSelected = false;
+        getNavigator().setDataNull();
+
     }
 
     public void clickCart() {
@@ -238,6 +252,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
         StartActivity.azadSelected = false;
         StartActivity.lockerSelected = false;
         StartActivity.personSelected = false;
+        getNavigator().setDataNull();
     }
 
     public void clickAzad() {
@@ -253,6 +268,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
         StartActivity.azadSelected = true;
         StartActivity.lockerSelected = false;
         StartActivity.personSelected = false;
+        getNavigator().setDataNull();
         Intent intent = MainActivity.getStartIntent(mActivity);
         mActivity.startActivity(intent);
     }
@@ -270,6 +286,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
         StartActivity.azadSelected = false;
         StartActivity.lockerSelected = false;
         StartActivity.personSelected = true;
+        getNavigator().setDataNull();
     }
 
 }

@@ -87,14 +87,14 @@ public class BaseCallback implements Callback, AppConstants {
 //                    }
 //                } else {
                     data = (Data) response.body();
-                    if (TextUtils.equals(data.getSettings().getSuccess(), "2")) {
-                        mContext.startActivity(new Intent(mContext, SplashActivity.class));
-
-                    } else if (TextUtils.equals(data.getSettings().getSuccess(), "0")) {
-                        CommonUtils.showSingleButtonAlert(mContext, mContext.getString(R.string.text_attention), data.getSettings().getMessage(), null, null);
-                    } else {
+//                    if (TextUtils.equals(data.getSettings().getSuccess(), "2")) {
+//                        mContext.startActivity(new Intent(mContext, SplashActivity.class));
+//
+//                    } else if (TextUtils.equals(data.getSettings().getSuccess(), "0")) {
+//                        CommonUtils.showSingleButtonAlert(mContext, mContext.getString(R.string.text_attention), data.getSettings().getMessage(), null, null);
+//                    } else {
                         mApiResponse.onResponseSuccess(response, requestCode);
-                    }
+//                    }
 //                }
             } else
                 mApiResponse.onResponseFailed(response.errorBody().toString(), response.code(), requestCode);
