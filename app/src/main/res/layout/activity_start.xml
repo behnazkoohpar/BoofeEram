@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:Context="com.farzam.rest.ui.start.StartActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.farzam.rest.ui.start.StartViewModel" />
+    </data>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/dl"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary">
+
+                <RelativeLayout
+                    android:id="@+id/radio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal">
+
+                    <ImageView
+                        android:id="@+id/menu"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_normal"
+                        android:onClick="@{()->viewModel.openMenu()}"
+                        android:src="@drawable/menu_icon" />
+
+                    <RadioButton
+                        android:id="@+id/dastband"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_toLeftOf="@+id/menu"
+                        android:checked="@{viewModel.dastband}"
+                        android:onClick="@{()->viewModel.clickDastband()}" />
+
+                    <TextView
+                        android:id="@+id/txtRDastband"
+                        style="@style/AppTheme.font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/dastband"
+                        android:text="@string/dastband"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_xlarge"
+                        android:onClick="@{()->viewModel.clickDastband()}" />
+
+                    <RadioButton
+                        android:id="@+id/cart"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_large"
+                        android:layout_toLeftOf="@+id/txtRDastband"
+                        android:checked="@{viewModel.cart}"
+                        android:onClick="@{()->viewModel.clickCart()}" />
+
+                    <TextView
+                        android:id="@+id/txtRCart"
+                        style="@style/AppTheme.font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/cart"
+                        android:text="@string/cart"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_xlarge"
+                        android:onClick="@{()->viewModel.clickCart()}"/>
+
+                    <RadioButton
+                        android:id="@+id/rPersonel"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_large"
+                        android:layout_toLeftOf="@+id/txtRCart"
+                        android:checked="@{viewModel.personeli}"
+                        android:onClick="@{()->viewModel.clickPersoneli()}" />
+
+                    <TextView
+                        android:id="@+id/txtRPersonel"
+                        style="@style/AppTheme.font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/rPersonel"
+                        android:text="@string/person"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_xlarge"
+                        android:onClick="@{()->viewModel.clickPersoneli()}" />
+
+                    <RadioButton
+                        android:id="@+id/rAzad"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_large"
+                        android:layout_toLeftOf="@+id/txtRPersonel"
+                        android:checked="@{viewModel.azad}"
+                        android:onClick="@{()->viewModel.clickAzad()}" />
+
+                    <TextView
+                        android:id="@+id/txtRAzad"
+                        style="@style/AppTheme.font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/rAzad"
+                        android:text="@string/azad"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_xlarge"
+                        android:onClick="@{()->viewModel.clickAzad()}"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/txtRCart"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:background="@color/white" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabPersoneli"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/radio"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.showPersoneli ? View.VISIBLE : View.GONE}">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtPersonNumber"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:text="@string/number_person"
+                            android:textColor="@color/white" />
+
+                        <EditText
+                            android:id="@+id/personNumber"
+                            style="@style/AppTheme.EditTextWhite"
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_toLeftOf="@+id/txtPersonNumber"
+                            android:inputType="number"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/margin_large"/>
+
+                        <Button
+                            android:id="@+id/btnCheckPersonNumber"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="55dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/personNumber"
+                            android:onClick="@{()->viewModel.callPersonInfo()}"
+                            android:text="@string/check" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/detailPersoneli"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/btnCheckMemberShip">
+
+                        <TextView
+                            android:id="@+id/namePersonel"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:text="@string/namePersonel"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+
+                        <TextView
+                            android:id="@+id/namePerson"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_toLeftOf="@+id/namePersonel"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/nameP"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_toLeftOf="@+id/namePerson"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:id="@+id/ok3"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="55dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="@dimen/margin_large"
+                            android:onClick="@{()->viewModel.getHistoryPersoneli()}"
+                            android:text="@string/show_detail"
+                            android:textSize="@dimen/margin_normal"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/btnSale3"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="55dp"
+                            android:layout_marginLeft="@dimen/margin_large"
+                            android:layout_toRightOf="@+id/ok3"
+                            android:enabled="false"
+                            android:onClick="@{()->viewModel.showSalePersoneli()}"
+                            android:text="@string/sale"
+                            android:textSize="@dimen/margin_normal"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/listPersoneli"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tabAzad"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/radio"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.showAzad? View.VISIBLE : View.GONE}">
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tabLocker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/radio"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.showDastband ? View.VISIBLE : View.GONE}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/l1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txtLocker"
+                                style="@style/AppTheme.font"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_large"
+                                android:layout_marginRight="@dimen/margin_large"
+                                android:text="@string/number_locker"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/margin_normal" />
+
+                            <EditText
+                                android:id="@+id/numberLocker"
+                                style="@style/AppTheme.EditTextWhite"
+                                android:layout_width="150dp"
+                                android:layout_height="55dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_large"
+                                android:layout_marginRight="@dimen/margin_large"
+                                android:layout_toLeftOf="@+id/txtLocker"
+                                android:inputType="number"
+                                android:maxLength="3"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/margin_large" />
+
+                            <Button
+                                android:id="@+id/btnCheckNumberLocker"
+                                style="@style/AppTheme.ButtonOrange"
+                                android:layout_width="220dp"
+                                android:layout_height="55dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/margin_large"
+                                android:layout_marginTop="@dimen/margin_large"
+                                android:layout_marginRight="30dp"
+                                android:layout_toLeftOf="@+id/numberLocker"
+                                android:onClick="@{()->viewModel.callLockerInfo()}"
+                                android:text="@string/check" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp">
+
+                            <TextView
+                                android:id="@+id/card"
+                                style="@style/AppTheme.font"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_large"
+                                android:layout_marginRight="@dimen/margin_large"
+                                android:text="@string/number_card"
+                                android:textColor="@color/white"
+                                android:textSize="20dp" />
+
+                            <TextView
+                                android:id="@+id/numberCard"
+                                style="@style/AppTheme.font"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_large"
+                                android:layout_marginRight="@dimen/margin_large"
+                                android:layout_toLeftOf="@+id/card"
+                                android:inputType="number"
+                                android:textColor="@color/white"
+                                android:textSize="20dp" />
+
+                            <TextView
+                                android:id="@+id/namefull"
+                                style="@style/AppTheme.font"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_large"
+                                android:layout_marginRight="@dimen/margin_large"
+                                android:layout_toLeftOf="@+id/numberCard"
+                                android:textColor="@color/white"
+                                android:textSize="20dp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <Button
+                                android:id="@+id/ok"
+                                style="@style/AppTheme.ButtonOrange"
+                                android:layout_width="220dp"
+                                android:layout_height="55dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="@dimen/margin_large"
+                                android:onClick="@{()->viewModel.getHistoryLocker()}"
+                                android:text="@string/show_detail"
+                                android:textSize="@dimen/margin_normal"
+                                android:visibility="gone" />
+
+                            <Button
+                                android:id="@+id/btnSale"
+                                style="@style/AppTheme.ButtonOrange"
+                                android:layout_width="220dp"
+                                android:layout_height="55dp"
+                                android:layout_marginLeft="@dimen/margin_large"
+                                android:layout_toRightOf="@+id/ok"
+                                android:enabled="false"
+                                android:onClick="@{()->viewModel.showSaleLocker()}"
+                                android:text="@string/sale"
+                                android:textSize="@dimen/margin_normal"
+                                android:visibility="gone" />
+                        </RelativeLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/tabCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/radio"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.showCart ? View.VISIBLE : View.GONE}">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtmemberShip"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:text="@string/number_card"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/margin_normal" />
+
+                        <EditText
+                            android:id="@+id/memberShip"
+                            style="@style/AppTheme.EditTextWhite"
+                            android:layout_width="150dp"
+                            android:layout_height="55dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_toLeftOf="@+id/txtmemberShip"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/margin_large" />
+
+                        <Button
+                            android:id="@+id/btnCheckMemberShip"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="55dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="30dp"
+                            android:layout_toLeftOf="@+id/memberShip"
+                            android:onClick="@{()->viewModel.callCardInfo()}"
+                            android:text="@string/check" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/detailDastband"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/btnCheckMemberShip">
+
+                        <TextView
+                            android:id="@+id/nameMemberShip"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:text="@string/number_locker"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+
+                        <TextView
+                            android:id="@+id/locker"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_toLeftOf="@+id/nameMemberShip"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/namelocker"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_large"
+                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_toLeftOf="@+id/locker"
+                            android:textColor="@color/white"
+                            android:textSize="20dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:id="@+id/ok2"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="55dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="@dimen/margin_large"
+                            android:onClick="@{()->viewModel.getHistoryCard()}"
+                            android:text="@string/show_detail"
+                            android:textSize="@dimen/margin_normal"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/btnSale2"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="55dp"
+                            android:layout_marginLeft="@dimen/margin_large"
+                            android:layout_toRightOf="@+id/ok2"
+                            android:enabled="false"
+                            android:onClick="@{()->viewModel.showSaleCard()}"
+                            android:text="@string/sale"
+                            android:textSize="@dimen/margin_normal"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/listCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small" />
+                </LinearLayout>
+
+            </RelativeLayout>
+        </ScrollView>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nv"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="@color/white"
+            app:itemIconTint="@color/colorPrimary"
+            app:itemTextColor="#242323"
+            app:headerLayout="@layout/header"
+            app:menu="@menu/menu"/>
+
+    </android.support.v4.widget.DrawerLayout>
+</layout>

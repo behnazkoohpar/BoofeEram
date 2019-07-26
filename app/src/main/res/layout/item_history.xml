@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:contentPadding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/txtname"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="عنوان کالا:" />
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtname" />
+
+
+            <TextView
+                android:id="@+id/txtcode"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/name"
+                android:text="کد:" />
+
+            <TextView
+                android:id="@+id/code"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtcode" />
+
+            <TextView
+                android:id="@+id/txtvalue"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/code"
+                android:text="تعداد:" />
+
+            <TextView
+                android:id="@+id/value"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtvalue" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/txtunitPrice"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="قیمت واحد:" />
+
+            <TextView
+                android:id="@+id/unitPrice"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtunitPrice" />
+
+
+            <TextView
+                android:id="@+id/txttotalPrice"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/unitPrice"
+                android:text="قیمت کل:" />
+
+            <TextView
+                android:id="@+id/totalPrice"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txttotalPrice" />
+
+            <TextView
+                android:id="@+id/txtinvoiceDate"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/totalPrice"
+                android:text="تاریخ:" />
+
+            <TextView
+                android:id="@+id/invoiceDate"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtinvoiceDate" />
+
+            <TextView
+                android:id="@+id/txtfactorNo"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/invoiceDate"
+                android:text="شماره فاکتور:" />
+
+            <TextView
+                android:id="@+id/factorNo"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtfactorNo" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

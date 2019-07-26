@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    tools:Context="com.farzam.rest.ui.listFactor.ListFactorActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.farzam.rest.ui.listFactor.ListFactorViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/main_header_selector">
+
+            <ImageView
+                android:id="@+id/imgCard"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:padding="@dimen/padding_common"
+                android:src="@drawable/ic_list"
+                android:tint="@color/white" />
+
+            <TextView
+                style="@style/AppTheme.font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imgCard"
+                android:text="@string/txt_menu_list_factor"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/colorAccent">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:onClick="@{()->viewModel.sortClick()}"
+                    android:src="@drawable/ic_sort"
+                    android:tint="@color/white" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/img"
+                    android:onClick="@{()->viewModel.filterClick()}"
+                    android:text="مرتب سازی" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/colorAccent">
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:onClick="@{()->viewModel.filterClick()}"
+                    android:src="@drawable/ic_filter"
+                    android:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/textday"
+                    style="@style/AppTheme.TextViewWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_toLeftOf="@+id/img2"
+                    android:onClick="@{()->viewModel.filterClick()}"
+                    android:text="@{viewModel.day}" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:id="@+id/today"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal">
+
+                <RadioButton
+                    android:id="@+id/rtoday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:checked="@{viewModel.today}"
+                    android:onClick="@{()->viewModel.clickToday()}" />
+
+                <TextView
+                    android:id="@+id/txtToday"
+                    style="@style/AppTheme.font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/rtoday"
+                    android:text="@string/today"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:onClick="@{()->viewModel.clickToday()}" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/month"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal">
+
+                <RadioButton
+                    android:id="@+id/rmonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_large"
+                    android:checked="@{viewModel.month}"
+                    android:onClick="@{()->viewModel.clickMonth()}" />
+
+                <TextView
+                    android:id="@+id/txtMonth"
+                    style="@style/AppTheme.font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/rmonth"
+                    android:text="@string/month"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:onClick="@{()->viewModel.clickMonth()}"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_normal">
+
+                <RadioButton
+                    android:id="@+id/rDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_large"
+                    android:checked="@{viewModel.date}"
+                    android:onClick="@{()->viewModel.clickFromDate()}" />
+
+                <TextView
+                    android:id="@+id/txtDate"
+                    style="@style/AppTheme.font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/rDate"
+                    android:text="@string/fromDate"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:onClick="@{()->viewModel.clickFromDate()}"/>
+
+                <TextView
+                    android:id="@+id/fromDate"
+                    style="@style/AppTheme.EditTextWhite"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/txtDate"
+                    android:enabled="@{viewModel.fromDate}"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:maxLength="10"
+                    android:onClick="@{()->viewModel.clickFromDate()}" />
+                <TextView
+                    android:id="@+id/txtTime"
+                    style="@style/AppTheme.font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/fromDate"
+                    android:text="@string/fromTime"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:onClick="@{()->viewModel.clickFromTime()}"/>
+
+                <TextView
+                    android:id="@+id/fromTime"
+                    style="@style/AppTheme.EditTextWhite"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/txtTime"
+                    android:enabled="@{viewModel.fromTime}"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:maxLength="10"
+                    android:onClick="@{()->viewModel.clickFromTime()}" />
+
+                <TextView
+                    android:id="@+id/txttoDate"
+                    style="@style/AppTheme.font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/fromTime"
+                    android:text="@string/toDate"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:onClick="@{()->viewModel.clickToDate()}" />
+
+                <TextView
+                    android:id="@+id/toDate"
+                    style="@style/AppTheme.EditTextWhite"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/txttoDate"
+                    android:enabled="@{viewModel.toDate}"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:maxLength="10"
+                    android:onClick="@{()->viewModel.clickToDate()}"/>
+
+                <TextView
+                    android:id="@+id/txttoTime"
+                    style="@style/AppTheme.font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/toDate"
+                    android:text="@string/toTime"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:onClick="@{()->viewModel.clickToTime()}" />
+
+                <TextView
+                    android:id="@+id/toTime"
+                    style="@style/AppTheme.EditTextWhite"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_toLeftOf="@+id/txttoTime"
+                    android:enabled="@{viewModel.toTime}"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:maxLength="10"
+                    android:onClick="@{()->viewModel.clickToTime()}"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+</layout>

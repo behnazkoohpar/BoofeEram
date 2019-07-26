@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:contentPadding="10dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/txtshFactor"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="شماره فاکتور:" />
+
+            <TextView
+                android:id="@+id/shFactor"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtshFactor" />
+
+
+            <TextView
+                android:id="@+id/txtDate"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/shFactor"
+                android:text="تاریخ و زمان:" />
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtDate" />
+
+            <TextView
+                android:id="@+id/txtName"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/date"
+                android:text="نام عضویت:" />
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtName" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/txtGhabelePardakht"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="قابل پرداخت:" />
+
+            <TextView
+                android:id="@+id/ghabelePardakht"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtGhabelePardakht" />
+
+
+            <TextView
+                android:id="@+id/txtpardakhtShode"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/ghabelePardakht"
+                android:text="پرداخت نشده:" />
+
+            <TextView
+                android:id="@+id/pardakhtNashode"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtpardakhtShode" />
+
+            <TextView
+                android:id="@+id/txtPrice"
+                style="@style/AppTheme.TextViewLableYello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/pardakhtNashode"
+                android:text="مبلغ کل:" />
+
+            <TextView
+                android:id="@+id/price"
+                style="@style/AppTheme.TextViewLableBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/txtPrice" />
+
+            <ImageView
+                android:id="@+id/showDetail"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_list"
+                android:tint="@color/red_color" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/txttakhfif"
+                    style="@style/AppTheme.TextViewLableYello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="تخفیف:" />
+
+                <TextView
+                    android:id="@+id/takhfif"
+                    style="@style/AppTheme.TextViewLableBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txttakhfif" />
+
+
+                <TextView
+                    android:id="@+id/txtpasAzTakhfif"
+                    style="@style/AppTheme.TextViewLableYello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/takhfif"
+                    android:text="پس از تخفیف:" />
+
+                <TextView
+                    android:id="@+id/pasAzTakhfif"
+                    style="@style/AppTheme.TextViewLableBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtpasAzTakhfif" />
+
+                <TextView
+                    android:id="@+id/txtAvarezMaliat"
+                    style="@style/AppTheme.TextViewLableYello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/pasAzTakhfif"
+                    android:text="عوارض مالیات:" />
+
+                <TextView
+                    android:id="@+id/avarezMaliat"
+                    style="@style/AppTheme.TextViewLableBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtAvarezMaliat" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/txtserialPazires"
+                    style="@style/AppTheme.TextViewLableYello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="سریال پذیرش:" />
+
+                <TextView
+                    android:id="@+id/serialPaziresh"
+                    style="@style/AppTheme.TextViewLableBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtserialPazires" />
+
+
+                <TextView
+                    android:id="@+id/txtShomareDastband"
+                    style="@style/AppTheme.TextViewLableYello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/serialPaziresh"
+                    android:text="شماره دستبند:" />
+
+                <TextView
+                    android:id="@+id/shomareDastband"
+                    style="@style/AppTheme.TextViewLableBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtShomareDastband" />
+
+                <TextView
+                    android:id="@+id/txtvahedpaziresh"
+                    style="@style/AppTheme.TextViewLableYello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/shomareDastband"
+                    android:text="واحد پذیرش:" />
+
+                <TextView
+                    android:id="@+id/vahedPaziresh"
+                    style="@style/AppTheme.TextViewLableBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtvahedpaziresh" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/txtvahedSazmani"
+                    style="@style/AppTheme.TextViewLableYello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="واحد سازمانی:" />
+
+                <TextView
+                    android:id="@+id/vahedSazmani"
+                    style="@style/AppTheme.TextViewLableBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtvahedSazmani" />
+
+
+                <TextView
+                    android:id="@+id/txtSanadFactor"
+                    style="@style/AppTheme.TextViewLableYello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/vahedSazmani"
+                    android:text="سند فاکتور:" />
+
+                <TextView
+                    android:id="@+id/sanadfactor"
+                    style="@style/AppTheme.TextViewLableBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtSanadFactor" />
+
+                <TextView
+                    android:id="@+id/txtsanadPoorsant"
+                    style="@style/AppTheme.TextViewLableYello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/sanadfactor"
+                    android:text="سند پورسانت:" />
+
+                <TextView
+                    android:id="@+id/sanadPoorsant"
+                    style="@style/AppTheme.TextViewLableBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtsanadPoorsant" />
+
+                <TextView
+                    android:id="@+id/txtnoeFactor"
+                    style="@style/AppTheme.TextViewLableYello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/sanadPoorsant"
+                    android:text="نوع فاکتور:" />
+
+                <TextView
+                    android:id="@+id/noefactor"
+                    style="@style/AppTheme.TextViewLableBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/txtnoeFactor" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
