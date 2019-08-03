@@ -13,9 +13,9 @@ import java.util.List;
 public interface StartNavigator {
     void callLockerInfo();
 
-    void setPersonInfo(List<CardInfoResponse> cardInfo);
+    void setPersonInfo(List<CardInfoResponse> cardInfo,int position);
 
-    void setCardInfo(List<CardInfoResponse> cardInfo);
+    void setCardInfo(List<CardInfoResponse> cardInfo,int position);
 
     void getHistory();
 
@@ -23,7 +23,7 @@ public interface StartNavigator {
 
     void callCheckCard();
 
-    void setLockerInfo(List<LockerInfoResponse> loginResponses);
+    void setLockerInfo(List<LockerInfoResponse> loginResponses,int position);
 
     void getHistoryCard();
 
@@ -38,4 +38,27 @@ public interface StartNavigator {
 
     void setDataNull();
 
+    void callLockerName();
+
+    void callLockerCard();
+
+    void callCardNameFamily();
+
+    void callCardTel();
+
+    void callPersonNameFamily();
+
+    void callPersonCodeGharardad();
+
+    void setLockerCard(List<LockerInfoResponse> loginResponsesCard);
+
+    void setLockerName(List<LockerInfoResponse> lockerInfoResponses);
+
+    void setCardName(List<CardInfoResponse> cardInfoResponses1);
+
+    void setCardTel(List<CardInfoResponse> cardInfoResponses2);
+
+    void setPersonName(List<CardInfoResponse> cardInfoResponses3);
+
+    void setPersonGharadad(List<CardInfoResponse> cardInfoResponses4);
 }

@@ -155,7 +155,6 @@ public final class CommonUtils implements AppConstants {
         }
     }
 
-
     public static void showSingleButtonAlert(Context context, String title, String msg, String buttonTitle, final IL listner) {
         try {
             TextView tvAlertTitle, tvAlertMessage;
@@ -281,8 +280,12 @@ public final class CommonUtils implements AppConstants {
 
 
     public static void dismissDialog() {
-        if (dialog != null && dialog.isShowing())
-            dialog.dismiss();
+        try {
+            if (dialog != null && dialog.isShowing())
+                dialog.dismiss();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static boolean isDialogOpen() {

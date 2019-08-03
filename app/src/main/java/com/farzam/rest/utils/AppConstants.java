@@ -5,8 +5,8 @@ package com.farzam.rest.utils;
  */
 public interface AppConstants {
 
-//    String BASE_URL = "http://5.202.192.147:5000";
-    String BASE_URL = "http://192.168.120.7:5000";
+    String BASE_URL = "http://5.202.192.147:5000";
+//    String BASE_URL = "http://192.168.120.7:5000";
     String PREF_NAME = "rest_pref";
     String TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss";
 
@@ -32,6 +32,12 @@ public interface AppConstants {
     int API_CALL_CHECK_PERSON = 1014;
     int API_CALL_SET_FACTOR_AZAD = 1015;
     int API_CALL_HISTORY2 = 1016;
+    int API_CALL_NAME_FAMILY_PERSON = 1017;
+    int API_CALL_NUMBER_LOCKER_CARD = 1018;
+    int API_CALL_NAME_MEMBERSHIP = 1019;
+    int API_CALL_TEL_MEMBERSHIP = 1020;
+    int API_CALL_PERSON_NAME_FAMILY = 1021;
+    int API_CALL_CODE_GHARARDAD = 1022;
 
     String REQUEST_KEY_USER_NAME = "user_name";
     String REQUEST_KEY_PASSWORD = "password";
@@ -50,6 +56,10 @@ public interface AppConstants {
     String REQUEST_KEY_FROM_TIME = "from_time";
     String REQUEST_KEY_TO_DATE = "to_date";
     String REQUEST_KEY_TO_TIME = "to_time";
+    String REQUEST_KEY_LOCKER_NAME_FAMILY = "name";
+    String REQUEST_KEY_NUMBER_LOCKER_CARD = "card_number";
+    String REQUEST_KEY_CODE_GHARARDAD = "finger_print";
+    String REQUEST_KEY_TEL_MEMBERSHIP = "phone";
 
 
 }

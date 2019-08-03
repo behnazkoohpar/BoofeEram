@@ -1,6 +1,8 @@
 package com.farzam.rest.ui.start;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 
 import com.farzam.rest.BR;
 import com.farzam.rest.R;
@@ -74,6 +77,19 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     private void initView() {
+        if (mStartViewModel.getDataManager().getShowAzad()){
+            mActivityStartBinding.rAzad.setVisibility(View.VISIBLE);
+            mActivityStartBinding.txtRAzad.setVisibility(View.VISIBLE);
+        }
+        if (mStartViewModel.getDataManager().getShowMembership()){
+            mActivityStartBinding.cart.setVisibility(View.VISIBLE);
+            mActivityStartBinding.txtRCart.setVisibility(View.VISIBLE);
+        }
+        if (mStartViewModel.getDataManager().getShowPersone()){
+            mActivityStartBinding.rPersonel.setVisibility(View.VISIBLE);
+            mActivityStartBinding.txtRPersonel.setVisibility(View.VISIBLE);
+        }
+
         if (mStartViewModel.getDataManager().getPrefKeyDontUse()) {
             mActivityStartBinding.nv.getMenu().findItem(R.id.nav_setting).setVisible(false);
         }
@@ -102,49 +118,58 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     @Override
-    public void setPersonInfo(List<CardInfoResponse> cardInfo) {
-        membershipFileID = cardInfo.get(0).getMembershipfileID();
-        mActivityStartBinding.namePerson.setText(cardInfo.get(0).getFullName());
-        mActivityStartBinding.nameP.setText(cardInfo.get(0).getLockerNumber());
+    public void setPersonInfo(List<CardInfoResponse> cardInfo , int position) {
+        membershipFileID = cardInfo.get(position).getMembershipfileID();
+        mActivityStartBinding.namePerson.setText(cardInfo.get(position).getFullName());
+        mActivityStartBinding.nameP.setText(cardInfo.get(position).getLockerNumber());
         mActivityStartBinding.btnSale3.setEnabled(true);
-        lockerNumber = cardInfo.get(0).getLockerNumber();
+        lockerNumber = cardInfo.get(position).getLockerNumber();
         mActivityStartBinding.listPersoneli.setVisibility(View.VISIBLE);
         mActivityStartBinding.ok3.setVisibility(View.VISIBLE);
+        mActivityStartBinding.lastfactor3.setVisibility(View.VISIBLE);
         mActivityStartBinding.btnSale3.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void setCardInfo(List<CardInfoResponse> cardInfo) {
-        membershipFileID = cardInfo.get(0).getMembershipfileID();
-        mActivityStartBinding.namelocker.setText(cardInfo.get(0).getFullName());
-        mActivityStartBinding.locker.setText(cardInfo.get(0).getLockerNumber());
+    public void setCardInfo(List<CardInfoResponse> cardInfo , int position) {
+        membershipFileID = cardInfo.get(position).getMembershipfileID();
+        mActivityStartBinding.namelocker.setText(cardInfo.get(position).getFullName());
+        mActivityStartBinding.locker.setText(cardInfo.get(position).getLockerNumber());
         mActivityStartBinding.btnSale2.setEnabled(true);
-        lockerNumber = cardInfo.get(0).getLockerNumber();
+        lockerNumber = cardInfo.get(position).getLockerNumber();
         mActivityStartBinding.listCard.setVisibility(View.VISIBLE);
         mActivityStartBinding.ok2.setVisibility(View.VISIBLE);
+        mActivityStartBinding.lastfactor2.setVisibility(View.VISIBLE);
         mActivityStartBinding.btnSale2.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void setLockerInfo(List<LockerInfoResponse> lockerInfo) {
-        membershipFileID = lockerInfo.get(0).getMembershipfileID();
-        mActivityStartBinding.namefull.setText(lockerInfo.get(0).getFullName());
-        mActivityStartBinding.numberCard.setText(lockerInfo.get(0).getCardNumber());
+    public void setLockerInfo(List<LockerInfoResponse> lockerInfo , int position) {
+        membershipFileID = lockerInfo.get(position).getMembershipfileID();
+        mActivityStartBinding.namefull.setText(lockerInfo.get(position).getFullName());
+        mActivityStartBinding.numberCard.setText(lockerInfo.get(position).getCardNumber());
         mActivityStartBinding.btnSale.setEnabled(true);
-        lockerNumber = lockerInfo.get(0).getLockerNumber();
+        lockerNumber = lockerInfo.get(position).getLockerNumber();
         mActivityStartBinding.list.setVisibility(View.VISIBLE);
         mActivityStartBinding.ok.setVisibility(View.VISIBLE);
+        mActivityStartBinding.lastfactor.setVisibility(View.VISIBLE);
         mActivityStartBinding.btnSale.setVisibility(View.VISIBLE);
-        poolReceptionID = lockerInfo.get(0).getPoolReceptionID();
-        poolReceiptionAssignLocker = lockerInfo.get(0).getPoolReceiptionAssignLocker();
+        poolReceptionID = lockerInfo.get(position).getPoolReceptionID();
+        poolReceiptionAssignLocker = lockerInfo.get(position).getPoolReceiptionAssignLocker();
     }
 
     @Override
     public void setDataNull() {
 
-        mActivityStartBinding.memberShip.setText("");
-        mActivityStartBinding.numberLocker.setText("");
+        mActivityStartBinding.codeGharardad.setText("");
         mActivityStartBinding.personNumber.setText("");
+        mActivityStartBinding.pNameAndFamily.setText("");
+        mActivityStartBinding.numberLocker.setText("");
+        mActivityStartBinding.nameNumberLocker.setText("");
+        mActivityStartBinding.numberLockerCard.setText("");
+        mActivityStartBinding.memberShip.setText("");
+        mActivityStartBinding.telMemberShip.setText("");
+        mActivityStartBinding.namefamilyMemberShip.setText("");
         mActivityStartBinding.locker.setText("");
         mActivityStartBinding.namelocker.setText("");
         mActivityStartBinding.namePerson.setText("");
@@ -154,6 +179,15 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         mActivityStartBinding.listCard.setAdapter(null);
         mActivityStartBinding.list.setAdapter(null);
         mActivityStartBinding.listPersoneli.setAdapter(null);
+        mActivityStartBinding.lastfactor3.setVisibility(View.GONE);
+        mActivityStartBinding.lastfactor2.setVisibility(View.GONE);
+        mActivityStartBinding.lastfactor.setVisibility(View.GONE);
+        mActivityStartBinding.ok.setVisibility(View.GONE);
+        mActivityStartBinding.ok2.setVisibility(View.GONE);
+        mActivityStartBinding.ok3.setVisibility(View.GONE);
+        mActivityStartBinding.btnSale.setVisibility(View.GONE);
+        mActivityStartBinding.btnSale2.setVisibility(View.GONE);
+        mActivityStartBinding.btnSale3.setVisibility(View.GONE);
         membershipFileID = null;
     }
 
@@ -194,6 +228,8 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     public void callLockerInfo() {
         try {
             if (!mActivityStartBinding.numberLocker.getText().toString().isEmpty()) {
+                mActivityStartBinding.nameNumberLocker.setText("");
+                mActivityStartBinding.numberLockerCard.setText("");
                 hideKeyboard();
                 HashMap<String, String> map = new HashMap<>();
                 map.put(REQUEST_KEY_LOCKER_NUMBER, mActivityStartBinding.numberLocker.getText().toString());
@@ -216,6 +252,8 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     public void callCheckCard() {
         try {
             if (!mActivityStartBinding.memberShip.getText().toString().isEmpty()) {
+                mActivityStartBinding.telMemberShip.setText("");
+                mActivityStartBinding.namefamilyMemberShip.setText("");
                 hideKeyboard();
                 HashMap<String, String> map = new HashMap<>();
                 map.put(REQUEST_KEY_CARD_NUMBER, mActivityStartBinding.memberShip.getText().toString());
@@ -235,6 +273,8 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     public void callPersonInfo() {
         try {
             if (!mActivityStartBinding.personNumber.getText().toString().isEmpty()) {
+                mActivityStartBinding.codeGharardad.setText("");
+                mActivityStartBinding.pNameAndFamily.setText("");
                 hideKeyboard();
                 HashMap<String, String> map = new HashMap<>();
                 map.put(REQUEST_KEY_CARD_NUMBER, mActivityStartBinding.personNumber.getText().toString());
@@ -346,6 +386,311 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
             startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void callLockerName() {
+        try {
+            if (!mActivityStartBinding.nameNumberLocker.getText().toString().isEmpty()) {
+                hideKeyboard();
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_LOCKER_NAME_FAMILY, mActivityStartBinding.nameNumberLocker.getText().toString());
+                map.put(REQUEST_KEY_ORGANIZATION_UNIT, mStartViewModel.getDataManager().getOrganizationalPosition());
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callNameFamilyPerson(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_personelinameFamily), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void callLockerCard() {
+        try {
+            if (!mActivityStartBinding.numberLockerCard.getText().toString().isEmpty()) {
+                hideKeyboard();
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_NUMBER_LOCKER_CARD, mActivityStartBinding.numberLockerCard.getText().toString());
+                map.put(REQUEST_KEY_ORGANIZATION_UNIT, mStartViewModel.getDataManager().getOrganizationalPosition());
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callPersonNumberLockerCard(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_numberLockerCard), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void callCardNameFamily() {
+        try {
+            if (!mActivityStartBinding.namefamilyMemberShip.getText().toString().isEmpty()) {
+                hideKeyboard();
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_LOCKER_NAME_FAMILY, mActivityStartBinding.namefamilyMemberShip.getText().toString());
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callNameMemberShip(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_personelinameFamily), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void callCardTel() {
+        try {
+            if (!mActivityStartBinding.telMemberShip.getText().toString().isEmpty() || mActivityStartBinding.telMemberShip.length()<10) {
+                hideKeyboard();
+                HashMap<String, String> map = new HashMap<>();
+                String telNumber ="0"+ mActivityStartBinding.telMemberShip.getText().toString().substring((mActivityStartBinding.telMemberShip.getText().toString().length()-10),mActivityStartBinding.telMemberShip.getText().toString().length());
+                map.put(REQUEST_KEY_TEL_MEMBERSHIP, telNumber);
+                map.put(REQUEST_KEY_ORGANIZATION_UNIT, mStartViewModel.getDataManager().getOrganizationalPosition());
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callTelMemberShip(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_telMemberShip), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void callPersonNameFamily() {
+        try {
+            if (!mActivityStartBinding.pNameAndFamily.getText().toString().isEmpty()) {
+                hideKeyboard();
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_LOCKER_NAME_FAMILY, mActivityStartBinding.pNameAndFamily.getText().toString());
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callPersonNameAndFamily(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_personelinameFamily), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void callPersonCodeGharardad() {
+        try {
+            if (!mActivityStartBinding.codeGharardad.getText().toString().isEmpty()) {
+                hideKeyboard();
+                HashMap<String, String> map = new HashMap<>();
+                map.put(REQUEST_KEY_CODE_GHARARDAD, mActivityStartBinding.codeGharardad.getText().toString());
+                map.put(REQUEST_KEY_ORGANIZATION_UNIT, mStartViewModel.getDataManager().getOrganizationalPosition());
+                if (LOGTRUE)
+                    Log.d("mPARAMS :::::::: ", map.toString());
+                mStartViewModel.callCodeGharardad(iCallApi, StartActivity.this, map);
+            } else {
+                CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect_codeGharardad), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(StartActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void setLockerCard(final List<LockerInfoResponse> lockerInfo) {
+        if (lockerInfo.size() == 1) {
+            mActivityStartBinding.numberLocker.setText("");
+            mActivityStartBinding.nameNumberLocker.setText("");
+            setLockerInfo(lockerInfo,0);
+        } else {
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
+            AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
+
+            for (int i = 0; i < lockerInfo.size(); i++)
+                arrayAdapter.add(lockerInfo.get(i).getFullName());
+            builderSingle.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String strName = arrayAdapter.getItem(which);
+                    mActivityStartBinding.numberLocker.setText("");
+                    mActivityStartBinding.nameNumberLocker.setText("");
+                    setLockerInfo(lockerInfo,which);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void setLockerName(final List<LockerInfoResponse> lockerInfo) {
+        if (lockerInfo.size() == 1) {
+            mActivityStartBinding.numberLocker.setText("");
+            mActivityStartBinding.numberLockerCard.setText("");
+            setLockerInfo(lockerInfo,0);
+        } else {
+
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
+            AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
+
+            for (int i = 0; i < lockerInfo.size(); i++)
+                arrayAdapter.add(lockerInfo.get(i).getFullName());
+            builderSingle.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String strName = arrayAdapter.getItem(which);
+                    mActivityStartBinding.numberLocker.setText("");
+                    mActivityStartBinding.numberLockerCard.setText("");
+                    setLockerInfo(lockerInfo,which);
+                }
+            });
+            builderSingle.show();
+        }
+    }
+
+    @Override
+    public void setCardName(final List<CardInfoResponse> cardInfoResponses1) {
+        if (cardInfoResponses1.size() == 1) {
+            mActivityStartBinding.memberShip.setText("");
+            mActivityStartBinding.telMemberShip.setText("");
+            setCardInfo(cardInfoResponses1,0);
+        } else {
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
+            AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
+
+            for (int i = 0; i < cardInfoResponses1.size(); i++)
+                arrayAdapter.add(cardInfoResponses1.get(i).getFullName());
+            builderSingle.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String strName = arrayAdapter.getItem(which);
+                    mActivityStartBinding.memberShip.setText("");
+                    mActivityStartBinding.telMemberShip.setText("");
+                    setCardInfo(cardInfoResponses1,which);
+                }
+            });
+            builderSingle.show();
+        }
+    }
+
+    @Override
+    public void setCardTel(final List<CardInfoResponse> cardInfoResponses2) {
+        if (cardInfoResponses2.size() == 1) {
+            mActivityStartBinding.memberShip.setText("");
+            mActivityStartBinding.namefamilyMemberShip.setText("");
+            setCardInfo(cardInfoResponses2,0);
+        } else {
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
+            AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
+
+            for (int i = 0; i < cardInfoResponses2.size(); i++)
+                arrayAdapter.add(cardInfoResponses2.get(i).getFullName());
+            builderSingle.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String strName = arrayAdapter.getItem(which);
+                    mActivityStartBinding.memberShip.setText("");
+                    mActivityStartBinding.namefamilyMemberShip.setText("");
+                    setCardInfo(cardInfoResponses2,which);
+                }
+            });
+            builderSingle.show();
+        }
+    }
+
+    @Override
+    public void setPersonName(final List<CardInfoResponse> cardInfoResponses3) {
+        if (cardInfoResponses3.size() == 1) {
+            mActivityStartBinding.personNumber.setText("");
+            mActivityStartBinding.codeGharardad.setText("");
+            setPersonInfo(cardInfoResponses3,0);
+        } else {
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
+            AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
+
+            for (int i = 0; i < cardInfoResponses3.size(); i++)
+                arrayAdapter.add(cardInfoResponses3.get(i).getFullName());
+            builderSingle.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String strName = arrayAdapter.getItem(which);
+                    mActivityStartBinding.personNumber.setText("");
+                    mActivityStartBinding.codeGharardad.setText("");
+                    setPersonInfo(cardInfoResponses3,which);
+                }
+            });
+            builderSingle.show();
+        }
+    }
+
+    @Override
+    public void setPersonGharadad(final List<CardInfoResponse> cardInfoResponses4) {
+        if (cardInfoResponses4.size() == 1) {
+            mActivityStartBinding.personNumber.setText("");
+            mActivityStartBinding.pNameAndFamily.setText("");
+            setPersonInfo(cardInfoResponses4,0);
+        } else {
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
+            AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
+
+            for (int i = 0; i < cardInfoResponses4.size(); i++)
+                arrayAdapter.add(cardInfoResponses4.get(i).getFullName());
+            builderSingle.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String strName = arrayAdapter.getItem(which);
+                    mActivityStartBinding.personNumber.setText("");
+                    mActivityStartBinding.pNameAndFamily.setText("");
+                    setPersonInfo(cardInfoResponses4,which);
+                }
+            });
+            builderSingle.show();
         }
     }
 }

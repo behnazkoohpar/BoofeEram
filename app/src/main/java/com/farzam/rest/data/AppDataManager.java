@@ -175,6 +175,35 @@ public class AppDataManager implements DataManager {
         mPreferencesHelper.setPrefKeyOrder(order);
     }
 
+    @Override
+    public boolean getShowAzad() {
+        return mPreferencesHelper.getShowAzad();
+    }
+
+    @Override
+    public void setShowAzad(boolean azad) {
+        mPreferencesHelper.setShowAzad(azad);
+    }
+
+    @Override
+    public boolean getShowPersone() {
+        return mPreferencesHelper.getShowPersone();
+    }
+
+    @Override
+    public void setShowPerson(boolean person) {
+        mPreferencesHelper.setShowPerson(person);
+    }
+
+    @Override
+    public boolean getShowMembership() {
+        return mPreferencesHelper.getShowMembership();
+    }
+
+    @Override
+    public void setShowMembership(boolean membership) {
+        mPreferencesHelper.setShowMembership(membership);
+    }
 
     @Override
     public void updateUserInfo(

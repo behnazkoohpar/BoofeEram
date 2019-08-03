@@ -3,11 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:Context="com.farzam.rest.ui.start.StartActivity">
-
     <data>
-
         <import type="android.view.View" />
-
         <variable
             name="viewModel"
             type="com.farzam.rest.ui.start.StartViewModel" />
@@ -71,9 +68,10 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/margin_large"
+                        android:layout_marginRight="@dimen/margin_small"
                         android:layout_toLeftOf="@+id/txtRDastband"
                         android:checked="@{viewModel.cart}"
+                        android:visibility="gone"
                         android:onClick="@{()->viewModel.clickCart()}" />
 
                     <TextView
@@ -86,6 +84,7 @@
                         android:text="@string/cart"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_size_xlarge"
+                        android:visibility="gone"
                         android:onClick="@{()->viewModel.clickCart()}"/>
 
                     <RadioButton
@@ -93,9 +92,10 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/margin_large"
+                        android:layout_marginRight="@dimen/margin_small"
                         android:layout_toLeftOf="@+id/txtRCart"
                         android:checked="@{viewModel.personeli}"
+                        android:visibility="gone"
                         android:onClick="@{()->viewModel.clickPersoneli()}" />
 
                     <TextView
@@ -107,6 +107,7 @@
                         android:layout_toLeftOf="@+id/rPersonel"
                         android:text="@string/person"
                         android:textColor="@color/white"
+                        android:visibility="gone"
                         android:textSize="@dimen/font_size_xlarge"
                         android:onClick="@{()->viewModel.clickPersoneli()}" />
 
@@ -115,9 +116,10 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/margin_large"
+                        android:layout_marginRight="@dimen/margin_small"
                         android:layout_toLeftOf="@+id/txtRPersonel"
                         android:checked="@{viewModel.azad}"
+                        android:visibility="gone"
                         android:onClick="@{()->viewModel.clickAzad()}" />
 
                     <TextView
@@ -129,13 +131,14 @@
                         android:layout_toLeftOf="@+id/rAzad"
                         android:text="@string/azad"
                         android:textColor="@color/white"
+                        android:visibility="gone"
                         android:textSize="@dimen/font_size_xlarge"
                         android:onClick="@{()->viewModel.clickAzad()}"/>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@+id/txtRCart"
+                        android:layout_below="@+id/dastband"
                         android:layout_marginTop="@dimen/margin_normal"
                         android:background="@color/white" />
 
@@ -167,8 +170,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginTop="@dimen/margin_large"
-                                android:layout_marginRight="@dimen/margin_large"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
                                 android:text="@string/number_locker"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/margin_normal" />
@@ -176,29 +179,106 @@
                             <EditText
                                 android:id="@+id/numberLocker"
                                 style="@style/AppTheme.EditTextWhite"
-                                android:layout_width="150dp"
-                                android:layout_height="55dp"
+                                android:layout_width="80dp"
+                                android:layout_height="50dp"
                                 android:layout_centerVertical="true"
-                                android:layout_marginTop="@dimen/margin_large"
-                                android:layout_marginRight="@dimen/margin_large"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
                                 android:layout_toLeftOf="@+id/txtLocker"
                                 android:inputType="number"
                                 android:maxLength="3"
-                                android:textAlignment="center"
-                                android:textSize="@dimen/margin_large" />
+                                android:textAlignment="center" />
 
-                            <Button
+                            <ImageView
                                 android:id="@+id/btnCheckNumberLocker"
                                 style="@style/AppTheme.ButtonOrange"
-                                android:layout_width="220dp"
-                                android:layout_height="55dp"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:layout_centerVertical="true"
-                                android:layout_marginLeft="@dimen/margin_large"
-                                android:layout_marginTop="@dimen/margin_large"
-                                android:layout_marginRight="30dp"
+                                android:layout_marginLeft="@dimen/margin_small"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
                                 android:layout_toLeftOf="@+id/numberLocker"
                                 android:onClick="@{()->viewModel.callLockerInfo()}"
-                                android:text="@string/check" />
+                                android:src="@drawable/search" />
+
+                            <TextView
+                                android:id="@+id/txtNameLocker"
+                                style="@style/AppTheme.font"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toLeftOf="@+id/btnCheckNumberLocker"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
+                                android:text="@string/name_and_family"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/margin_normal" />
+
+                            <EditText
+                                android:id="@+id/nameNumberLocker"
+                                style="@style/AppTheme.EditTextWhite"
+                                android:layout_width="150dp"
+                                android:layout_height="50dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
+                                android:layout_toLeftOf="@+id/txtNameLocker"
+                                android:inputType="text"
+                                android:maxLength="50"
+                                android:textAlignment="center"/>
+
+                            <ImageView
+                                android:id="@+id/btnCheckNameNumberLocker"
+                                style="@style/AppTheme.ButtonOrange"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/margin_small"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
+                                android:layout_toLeftOf="@+id/nameNumberLocker"
+                                android:onClick="@{()->viewModel.callLockerName()}"
+                                android:src="@drawable/search" />
+
+                            <TextView
+                                android:id="@+id/txtLockerCard"
+                                style="@style/AppTheme.font"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toLeftOf="@+id/btnCheckNameNumberLocker"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
+                                android:text="@string/number_card"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/margin_normal" />
+
+                            <EditText
+                                android:id="@+id/numberLockerCard"
+                                style="@style/AppTheme.EditTextWhite"
+                                android:layout_width="80dp"
+                                android:layout_height="50dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
+                                android:layout_toLeftOf="@+id/txtLockerCard"
+                                android:inputType="number"
+                                android:maxLength="5"
+                                android:textAlignment="center" />
+
+                            <ImageView
+                                android:id="@+id/btnCheckNumberLockerCard"
+                                style="@style/AppTheme.ButtonOrange"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/margin_small"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
+                                android:layout_toLeftOf="@+id/numberLockerCard"
+                                android:onClick="@{()->viewModel.callLockerCard()}"
+                                android:src="@drawable/search" />
 
                         </RelativeLayout>
 
@@ -213,8 +293,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginTop="@dimen/margin_large"
-                                android:layout_marginRight="@dimen/margin_large"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
                                 android:text="@string/number_card"
                                 android:textColor="@color/white"
                                 android:textSize="20dp" />
@@ -225,8 +305,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginTop="@dimen/margin_large"
-                                android:layout_marginRight="@dimen/margin_large"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
                                 android:layout_toLeftOf="@+id/card"
                                 android:inputType="number"
                                 android:textColor="@color/white"
@@ -238,8 +318,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginTop="@dimen/margin_large"
-                                android:layout_marginRight="@dimen/margin_large"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
                                 android:layout_toLeftOf="@+id/numberCard"
                                 android:textColor="@color/white"
                                 android:textSize="20dp" />
@@ -254,21 +334,30 @@
                                 android:id="@+id/ok"
                                 style="@style/AppTheme.ButtonOrange"
                                 android:layout_width="220dp"
-                                android:layout_height="55dp"
+                                android:layout_height="50dp"
                                 android:layout_alignParentLeft="true"
-                                android:layout_marginLeft="@dimen/margin_large"
+                                android:layout_marginLeft="@dimen/margin_small"
                                 android:onClick="@{()->viewModel.getHistoryLocker()}"
                                 android:text="@string/show_detail"
                                 android:textSize="@dimen/margin_normal"
                                 android:visibility="gone" />
-
+                            <Button
+                                android:id="@+id/lastfactor"
+                                style="@style/AppTheme.ButtonOrange"
+                                android:layout_width="220dp"
+                                android:layout_height="50dp"
+                                android:layout_toRightOf="@+id/ok"
+                                android:layout_marginLeft="@dimen/margin_small"
+                                android:text="@string/lastfactor"
+                                android:textSize="@dimen/margin_normal"
+                                android:visibility="gone" />
                             <Button
                                 android:id="@+id/btnSale"
                                 style="@style/AppTheme.ButtonOrange"
                                 android:layout_width="220dp"
-                                android:layout_height="55dp"
-                                android:layout_marginLeft="@dimen/margin_large"
-                                android:layout_toRightOf="@+id/ok"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="@dimen/margin_small"
+                                android:layout_toRightOf="@+id/lastfactor"
                                 android:enabled="false"
                                 android:onClick="@{()->viewModel.showSaleLocker()}"
                                 android:text="@string/sale"
@@ -303,8 +392,8 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
                             android:text="@string/number_card"
                             android:textColor="@color/white"
                             android:textSize="@dimen/margin_normal" />
@@ -312,29 +401,106 @@
                         <EditText
                             android:id="@+id/memberShip"
                             style="@style/AppTheme.EditTextWhite"
-                            android:layout_width="150dp"
-                            android:layout_height="55dp"
+                            android:layout_width="80dp"
+                            android:layout_height="50dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
                             android:layout_toLeftOf="@+id/txtmemberShip"
                             android:inputType="number"
                             android:maxLength="5"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/margin_large" />
+                            android:textAlignment="center" />
 
-                        <Button
+                        <ImageView
                             android:id="@+id/btnCheckMemberShip"
                             style="@style/AppTheme.ButtonOrange"
-                            android:layout_width="220dp"
-                            android:layout_height="55dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/margin_large"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="30dp"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
                             android:layout_toLeftOf="@+id/memberShip"
                             android:onClick="@{()->viewModel.callCardInfo()}"
-                            android:text="@string/check" />
+                            android:src="@drawable/search" />
+
+                        <TextView
+                            android:id="@+id/txtNamememberShip"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/btnCheckMemberShip"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:text="@string/name_and_family"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/margin_normal" />
+
+                        <EditText
+                            android:id="@+id/namefamilyMemberShip"
+                            style="@style/AppTheme.EditTextWhite"
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_toLeftOf="@+id/txtNamememberShip"
+                            android:inputType="text"
+                            android:maxLength="50"
+                            android:textAlignment="center" />
+
+                        <ImageView
+                            android:id="@+id/btnCheckNameFamilyMemberShip"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_toLeftOf="@+id/namefamilyMemberShip"
+                            android:onClick="@{()->viewModel.callCardNameFamily()}"
+                            android:src="@drawable/search" />
+
+                        <TextView
+                            android:id="@+id/txtTelmemberShip"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/btnCheckNameFamilyMemberShip"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:text="@string/tel_mobile_number2"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/margin_normal" />
+
+                        <EditText
+                            android:id="@+id/telMemberShip"
+                            style="@style/AppTheme.EditTextWhite"
+                            android:layout_width="120dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_toLeftOf="@+id/txtTelmemberShip"
+                            android:inputType="number"
+                            android:maxLength="11"
+                            android:textAlignment="center" />
+
+                        <ImageView
+                            android:id="@+id/btnCheckTelMemberShip"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_toLeftOf="@+id/telMemberShip"
+                            android:onClick="@{()->viewModel.callCardTel()}"
+                            android:src="@drawable/search" />
 
                     </RelativeLayout>
 
@@ -351,12 +517,11 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
                             android:text="@string/number_locker"
                             android:textColor="@color/white"
                             android:textSize="20dp" />
-
 
                         <TextView
                             android:id="@+id/locker"
@@ -364,8 +529,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
                             android:layout_toLeftOf="@+id/nameMemberShip"
                             android:textColor="@color/white"
                             android:textSize="20dp" />
@@ -376,8 +541,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
                             android:layout_toLeftOf="@+id/locker"
                             android:textColor="@color/white"
                             android:textSize="20dp" />
@@ -392,11 +557,22 @@
                             android:id="@+id/ok2"
                             style="@style/AppTheme.ButtonOrange"
                             android:layout_width="220dp"
-                            android:layout_height="55dp"
+                            android:layout_height="50dp"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="@dimen/margin_large"
+                            android:layout_marginLeft="@dimen/margin_small"
                             android:onClick="@{()->viewModel.getHistoryCard()}"
                             android:text="@string/show_detail"
+                            android:textSize="@dimen/margin_normal"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/lastfactor2"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@+id/ok2"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:text="@string/lastfactor"
                             android:textSize="@dimen/margin_normal"
                             android:visibility="gone" />
 
@@ -404,9 +580,9 @@
                             android:id="@+id/btnSale2"
                             style="@style/AppTheme.ButtonOrange"
                             android:layout_width="220dp"
-                            android:layout_height="55dp"
-                            android:layout_marginLeft="@dimen/margin_large"
-                            android:layout_toRightOf="@+id/ok2"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_toRightOf="@+id/lastfactor2"
                             android:enabled="false"
                             android:onClick="@{()->viewModel.showSaleCard()}"
                             android:text="@string/sale"
@@ -440,36 +616,111 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
                             android:text="@string/number_person"
                             android:textColor="@color/white" />
 
                         <EditText
                             android:id="@+id/personNumber"
                             style="@style/AppTheme.EditTextWhite"
+                            android:layout_width="80dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_toLeftOf="@+id/txtPersonNumber"
+                            android:inputType="number"
+                            android:maxLength="8"
+                            android:textAlignment="center"/>
+
+                        <ImageView
+                            android:id="@+id/btnCheckPersonNumber"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_toLeftOf="@+id/personNumber"
+                            android:onClick="@{()->viewModel.callPersonInfo()}"
+                            android:src="@drawable/search" />
+
+                        <TextView
+                            android:id="@+id/txtPnamePersonNumber"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/btnCheckPersonNumber"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:text="@string/name_and_family"
+                            android:textColor="@color/white" />
+
+                        <EditText
+                            android:id="@+id/pNameAndFamily"
+                            style="@style/AppTheme.EditTextWhite"
                             android:layout_width="150dp"
                             android:layout_height="50dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
-                            android:layout_toLeftOf="@+id/txtPersonNumber"
-                            android:inputType="number"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/margin_large"/>
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_toLeftOf="@+id/txtPnamePersonNumber"
+                            android:inputType="text"
+                            android:textAlignment="center"/>
 
-                        <Button
-                            android:id="@+id/btnCheckPersonNumber"
+                        <ImageView
+                            android:id="@+id/btnCheckPNameAndFamily"
                             style="@style/AppTheme.ButtonOrange"
-                            android:layout_width="220dp"
-                            android:layout_height="55dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/margin_large"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="30dp"
-                            android:layout_toLeftOf="@+id/personNumber"
-                            android:onClick="@{()->viewModel.callPersonInfo()}"
-                            android:text="@string/check" />
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_toLeftOf="@+id/pNameAndFamily"
+                            android:onClick="@{()->viewModel.callPersonNameFamily()}"
+                            android:src="@drawable/search" />
+
+                        <TextView
+                            android:id="@+id/txtCodeGharardad"
+                            style="@style/AppTheme.font"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/btnCheckPNameAndFamily"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:text="@string/codeGharardad"
+                            android:textColor="@color/white" />
+
+                        <EditText
+                            android:id="@+id/codeGharardad"
+                            style="@style/AppTheme.EditTextWhite"
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_toLeftOf="@+id/txtCodeGharardad"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:textAlignment="center"/>
+
+                        <ImageView
+                            android:id="@+id/btnCodeGharardad"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
+                            android:layout_toLeftOf="@+id/codeGharardad"
+                            android:onClick="@{()->viewModel.callPersonCodeGharardad()}"
+                            android:src="@drawable/search" />
 
                     </RelativeLayout>
 
@@ -486,8 +737,8 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
                             android:text="@string/namePersonel"
                             android:textColor="@color/white"
                             android:textSize="20dp" />
@@ -499,8 +750,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
                             android:layout_toLeftOf="@+id/namePersonel"
                             android:textColor="@color/white"
                             android:textSize="20dp" />
@@ -511,8 +762,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginTop="@dimen/margin_large"
-                            android:layout_marginRight="@dimen/margin_large"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="@dimen/margin_small"
                             android:layout_toLeftOf="@+id/namePerson"
                             android:textColor="@color/white"
                             android:textSize="20dp" />
@@ -527,21 +778,30 @@
                             android:id="@+id/ok3"
                             style="@style/AppTheme.ButtonOrange"
                             android:layout_width="220dp"
-                            android:layout_height="55dp"
+                            android:layout_height="50dp"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="@dimen/margin_large"
+                            android:layout_marginLeft="@dimen/margin_small"
                             android:onClick="@{()->viewModel.getHistoryPersoneli()}"
                             android:text="@string/show_detail"
                             android:textSize="@dimen/margin_normal"
                             android:visibility="gone" />
-
+                        <Button
+                            android:id="@+id/lastfactor3"
+                            style="@style/AppTheme.ButtonOrange"
+                            android:layout_width="220dp"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@+id/ok3"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:text="@string/lastfactor"
+                            android:textSize="@dimen/margin_normal"
+                            android:visibility="gone" />
                         <Button
                             android:id="@+id/btnSale3"
                             style="@style/AppTheme.ButtonOrange"
                             android:layout_width="220dp"
-                            android:layout_height="55dp"
-                            android:layout_marginLeft="@dimen/margin_large"
-                            android:layout_toRightOf="@+id/ok3"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="@dimen/margin_small"
+                            android:layout_toRightOf="@+id/lastfactor3"
                             android:enabled="false"
                             android:onClick="@{()->viewModel.showSalePersoneli()}"
                             android:text="@string/sale"

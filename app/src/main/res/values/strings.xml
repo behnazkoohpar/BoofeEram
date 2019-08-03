@@ -12,6 +12,7 @@
     <string name="btn_alert">باشه</string>
     <string name="btn_ok">باشه</string>
     <string name="tel_mobile_number">شماره تلفن همراه</string>
+    <string name="tel_mobile_number2">شماره تلفن همراه:</string>
     <string name="validation_phonenumber_or_email">شماره تلفن و یا ایمیل خورد را وارد کنید</string>
     <string name="validation_phonenumber">شماره تلفن اشتباه است</string>
     <string name="validation_password">لطفا رمز عبور را وارد کنید</string>
@@ -108,7 +109,7 @@
     <string name="data_is_null">فیلدهای ورودی را پر کنید</string>
     <string name="person">شماره پرسنلی</string>
     <string name="locker">شماره لاکر</string>
-    <string name="cart"> شماره کارت عضویت</string>
+    <string name="cart">عضویت بدون لاکر</string>
     <string name="dastband">شماره دستبند</string>
     <string name="azad">آزاد</string>
     <string name="txt_menu_setting">تنظیمات</string>
@@ -131,4 +132,14 @@
     <string name="data_incorrect_locker">شماره دستبند را وارد کنید</string>
     <string name="data_incorrect_card">شماره کارت را وارد کنید</string>
     <string name="data_incorrect_personeli">شماره پرسنلی را وارد کنید</string>
+    <string name="codeGharardad">کد تردد:</string>
+    <string name="name_and_family">نام و نام خانوادگی:</string>
+    <string name="data_incorrect_personelinameFamily">نام و نام خانوادگی را وارد کنید</string>
+    <string name="data_incorrect_numberLockerCard">شماره کارت را وارد کنید</string>
+    <string name="data_incorrect_telMemberShip">شماره تلفن همراه را به درستی وارد کنید</string>
+    <string name="data_incorrect_codeGharardad">کد قرارداد را وارد کنید</string>
+    <string name="saleMembership">فروش از طریق عضویت بدون لاکر باشد</string>
+    <string name="salePerson">فروش برای پرسنل امکان پذیر باشد</string>
+    <string name="saleAzad">فروش آزاد امکان پذیر باشد</string>
+    <string name="lastfactor">فاکتور آخر</string>
 </resources>

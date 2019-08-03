@@ -67,4 +67,16 @@ public interface PreferencesHelper {
     boolean getPrefKeyOrder();
 
     void setPrefKeyOrder(boolean order);
+
+    boolean getShowAzad();
+
+    void setShowAzad(boolean azad);
+
+    boolean getShowPersone();
+
+    void setShowPerson(boolean person);
+
+    boolean getShowMembership();
+
+    void setShowMembership(boolean membership);
 }

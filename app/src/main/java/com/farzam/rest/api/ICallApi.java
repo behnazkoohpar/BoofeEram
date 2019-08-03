@@ -87,4 +87,27 @@ public interface ICallApi {
     @POST("/WS/get_list_factor")
     Call<Data<ListFactorResponse>> getListFactor(@FieldMap HashMap<String, String> map);
 
+    @FormUrlEncoded
+    @POST("/WS/search_by_name_locker")
+    Call<Data<LockerInfoResponse>> callNameFamilyPerson(@FieldMap HashMap<String, String> map);
+
+    @FormUrlEncoded
+    @POST("/WS/search_by_card_number_locker")
+    Call<Data<LockerInfoResponse>> callPersonNumberLockerCard(@FieldMap HashMap<String, String> map);
+
+    @FormUrlEncoded
+    @POST("/WS/search_by_name_member")
+    Call<Data<CardInfoResponse>> callNameMemberShip(@FieldMap HashMap<String, String> map);
+
+    @FormUrlEncoded
+    @POST("/WS/search_by_phone_member")
+    Call<Data<CardInfoResponse>> callTelMemberShip(@FieldMap HashMap<String, String> map);
+
+    @FormUrlEncoded
+    @POST("/WS/search_by_name_person")
+    Call<Data<CardInfoResponse>> callPersonNameAndFamily(@FieldMap HashMap<String, String> map);
+
+    @FormUrlEncoded
+    @POST("/WS/search_by_finger_print_person")
+    Call<Data<CardInfoResponse>> callCodeGharardad(@FieldMap HashMap<String, String> map);
 }

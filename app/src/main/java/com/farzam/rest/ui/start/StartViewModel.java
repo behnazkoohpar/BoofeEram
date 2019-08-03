@@ -56,13 +56,36 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
     public void callLockerInfo() {
         getNavigator().callLockerInfo();
     }
+    public void callLockerName() {
+        getNavigator().callLockerName();
+    }
+    public void callLockerCard() {
+        getNavigator().callLockerCard();
+    }
 
     public void callCardInfo() {
         getNavigator().callCheckCard();
     }
 
+    public void callCardNameFamily() {
+        getNavigator().callCardNameFamily();
+    }
+
+    public void callCardTel() {
+        getNavigator().callCardTel();
+    }
+
+
     public void callPersonInfo() {
         getNavigator().callPersonInfo();
+    }
+
+    public void callPersonNameFamily() {
+        getNavigator().callPersonNameFamily();
+    }
+
+    public void callPersonCodeGharardad() {
+        getNavigator().callPersonCodeGharardad();
     }
 
     public void getHistoryLocker() {
@@ -91,6 +114,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
         Intent intent = MainActivity.getStartIntent(mActivity);
         mActivity.startActivity(intent);
     }
+
 
     public void callLocker(ICallApi iCallApi, StartActivity context, HashMap<String, String> map) {
         try {
@@ -158,6 +182,73 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
         }
     }
 
+    public void callNameFamilyPerson(ICallApi iCallApi, StartActivity context, HashMap<String, String> map) {
+        try {
+            BaseCallback baseCallback = new BaseCallback(context, true, iCallApi, getDataManager(), API_CALL_NAME_FAMILY_PERSON, this);
+            iCallApi.callNameFamilyPerson(map).enqueue(baseCallback);
+            setIsLoading(true);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.not_can_call), null, null);
+            e.printStackTrace();
+        }
+    }
+
+
+    public void callPersonNumberLockerCard(ICallApi iCallApi, StartActivity context, HashMap<String, String> map) {
+        try {
+            BaseCallback baseCallback = new BaseCallback(context, true, iCallApi, getDataManager(), API_CALL_NUMBER_LOCKER_CARD, this);
+            iCallApi.callPersonNumberLockerCard(map).enqueue(baseCallback);
+            setIsLoading(true);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.not_can_call), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    public void callNameMemberShip(ICallApi iCallApi, StartActivity context, HashMap<String, String> map) {
+        try {
+            BaseCallback baseCallback = new BaseCallback(context, true, iCallApi, getDataManager(), API_CALL_NAME_MEMBERSHIP, this);
+            iCallApi.callNameMemberShip(map).enqueue(baseCallback);
+            setIsLoading(true);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.not_can_call), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    public void callTelMemberShip(ICallApi iCallApi, StartActivity context, HashMap<String, String> map) {
+        try {
+            BaseCallback baseCallback = new BaseCallback(context, true, iCallApi, getDataManager(), API_CALL_TEL_MEMBERSHIP, this);
+            iCallApi.callTelMemberShip(map).enqueue(baseCallback);
+            setIsLoading(true);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.not_can_call), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    public void callPersonNameAndFamily(ICallApi iCallApi, StartActivity context, HashMap<String, String> map) {
+        try {
+            BaseCallback baseCallback = new BaseCallback(context, true, iCallApi, getDataManager(), API_CALL_PERSON_NAME_FAMILY, this);
+            iCallApi.callPersonNameAndFamily(map).enqueue(baseCallback);
+            setIsLoading(true);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.not_can_call), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    public void callCodeGharardad(ICallApi iCallApi, StartActivity context, HashMap<String, String> map) {
+        try {
+            BaseCallback baseCallback = new BaseCallback(context, true, iCallApi, getDataManager(), API_CALL_CODE_GHARARDAD, this);
+            iCallApi.callCodeGharardad(map).enqueue(baseCallback);
+            setIsLoading(true);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.not_can_call), null, null);
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onResponseSuccess(Object mObject, int requestCode) {
         try {
@@ -179,7 +270,7 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
                 switch (requestCode) {
                     case API_CALL_LOCKER_INFO:
                         List<LockerInfoResponse> loginResponses = data.getData();
-                        getNavigator().setLockerInfo(loginResponses);
+                        getNavigator().setLockerInfo(loginResponses,0);
                         break;
                     case API_CALL_HISTORY:
                         List<HistoryResponse> historyResponses = data.getData();
@@ -197,13 +288,41 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
                         break;
                     case API_CALL_CHECK_CARD:
                         List<CardInfoResponse> cardInfoResponses = data.getData();
-                        getNavigator().setCardInfo(cardInfoResponses);
+                        getNavigator().setCardInfo(cardInfoResponses,0);
                         break;
                     case API_CALL_CHECK_PERSON:
                         List<CardInfoResponse> personInfoResponses = data.getData();
-                        getNavigator().setPersonInfo(personInfoResponses);
+                        getNavigator().setPersonInfo(personInfoResponses,0);
                         break;
+                    case API_CALL_NAME_FAMILY_PERSON:
+                        List<LockerInfoResponse> lockerInfoResponses = data.getData();
+                        getNavigator().setLockerName(lockerInfoResponses);
+                        break;
+                    case API_CALL_NUMBER_LOCKER_CARD:
+                        List<LockerInfoResponse> loginResponsesCard = data.getData();
+                        getNavigator().setLockerCard(loginResponsesCard);
+                        break;
+                    case API_CALL_NAME_MEMBERSHIP:
+                        List<CardInfoResponse> cardInfoResponses1 = data.getData();
+                        getNavigator().setCardName(cardInfoResponses1);
+                        break;
+                    case API_CALL_TEL_MEMBERSHIP:
+                        List<CardInfoResponse> cardInfoResponses2 = data.getData();
+                        getNavigator().setCardTel(cardInfoResponses2);
+                        break;
+                    case API_CALL_PERSON_NAME_FAMILY:
+                        List<CardInfoResponse> cardInfoResponses3 = data.getData();
+                        getNavigator().setPersonName(cardInfoResponses3);
+                        break;
+                    case API_CALL_CODE_GHARARDAD:
+                        List<CardInfoResponse> cardInfoResponses4 = data.getData();
+                        getNavigator().setPersonGharadad(cardInfoResponses4);
+                        break;
+
+
                 }
+
+
             }
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.problem), null, null);
@@ -288,5 +407,6 @@ public class StartViewModel extends BaseViewModel<StartNavigator> implements App
         StartActivity.personSelected = true;
         getNavigator().setDataNull();
     }
+
 
 }

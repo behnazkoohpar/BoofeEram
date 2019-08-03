@@ -29,6 +29,9 @@ public class AppPreferencesHelper implements PreferencesHelper {
     private static final String PREF_KEY_PRINT = "PREF_KEY_PRINT";
     private static final String PREF_KEY_ORDER = "PREF_KEY_ORDER";
     private static final String PREF_KEY_DONTUSE = "PREF_KEY_DONTUSE";
+    private static final String PREF_KEY_MEMBERSHIP = "PREF_KEY_MEMBERSHIP";
+    private static final String PREF_KEY_AZAD = "PREF_KEY_AZAD";
+    private static final String PREF_KEY_PERSON = "PREF_KEY_PERSON";
 
     private final SharedPreferences mPrefs;
 
@@ -189,5 +192,35 @@ public class AppPreferencesHelper implements PreferencesHelper {
     @Override
     public void setPrefKeyOrder(boolean order) {
         mPrefs.edit().putBoolean(PREF_KEY_ORDER, order).apply();
+    }
+
+    @Override
+    public boolean getShowAzad() {
+        return mPrefs.getBoolean(PREF_KEY_AZAD, false);
+    }
+
+    @Override
+    public void setShowAzad(boolean azad) {
+        mPrefs.edit().putBoolean(PREF_KEY_AZAD, azad).apply();
+    }
+
+    @Override
+    public boolean getShowPersone() {
+        return mPrefs.getBoolean(PREF_KEY_PERSON, false);
+    }
+
+    @Override
+    public void setShowPerson(boolean person) {
+        mPrefs.edit().putBoolean(PREF_KEY_PERSON, person).apply();
+    }
+
+    @Override
+    public boolean getShowMembership() {
+        return mPrefs.getBoolean(PREF_KEY_MEMBERSHIP, false);
+    }
+
+    @Override
+    public void setShowMembership(boolean membership) {
+        mPrefs.edit().putBoolean(PREF_KEY_MEMBERSHIP, membership).apply();
     }
 }
