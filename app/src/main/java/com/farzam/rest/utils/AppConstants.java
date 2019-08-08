@@ -5,8 +5,8 @@ package com.farzam.rest.utils;
  */
 public interface AppConstants {
 
-    String BASE_URL = "http://5.202.192.147:5000";
-//    String BASE_URL = "http://192.168.120.7:5000";
+//    String BASE_URL = "http://5.202.192.147:5000";
+    String BASE_URL = "http://192.168.120.7:5000";
     String PREF_NAME = "rest_pref";
     String TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss";
 
