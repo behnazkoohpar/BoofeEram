@@ -1,25 +1,23 @@
 package com.farzam.rest.ui.listFactor;
 
+import com.farzam.rest.data.model.api.ListFactorDetailResponse;
 import com.farzam.rest.data.model.api.ListFactorResponse;
 
 import java.util.List;
 
 public interface ListFactorNavigator {
-    void filterClick();
-
-    void toUpAnim();
 
     void setList(List<ListFactorResponse> listFactorResponses);
 
     void openFromDateCalendar();
 
-    void openFromTimeCalendar();
-
     void openToDateCalendar();
 
-    void openToTimeCalendar();
+    void onReportClick();
 
-    void setToday();
+    void setDelivered(int i);
 
-    void setMonth();
+    void setPersonRecieved(int i, int i1);
+
+    void setListDetail(List<ListFactorDetailResponse> listFactorDetailResponses);
 }

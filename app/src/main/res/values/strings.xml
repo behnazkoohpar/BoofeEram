@@ -142,4 +142,13 @@
     <string name="salePerson">فروش برای پرسنل امکان پذیر باشد</string>
     <string name="saleAzad">فروش آزاد امکان پذیر باشد</string>
     <string name="lastfactor">فاکتور آخر</string>
+    <string name="status">وضعیت تحویل:</string>
+    <string name="delivered">تحویل شده</string>
+    <string name="notdelivered">تحویل نشده</string>
+    <string name="all">همه</string>
+    <string name="typeFactor">نوع فاکتور:</string>
+    <string name="remember_locker">عضویت با لاکر</string>
+    <string name="withoutReception">عضویت بدون پذیرش</string>
+    <string name="report">تهیه گزارش</string>
+    <string name="personel">پرسنل</string>
 </resources>

@@ -5,8 +5,9 @@ package com.farzam.rest.utils;
  */
 public interface AppConstants {
 
-//    String BASE_URL = "http://5.202.192.147:5000";
-    String BASE_URL = "http://192.168.120.7:5000";
+    String BASE_URL = "http://5.202.192.147:5000";
+//    String BASE_URL = "http://192.168.120.7:5000";
+//    String BASE_URL = "http://192.168.100.10:5000";
     String PREF_NAME = "rest_pref";
     String TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss";
 
@@ -38,6 +39,7 @@ public interface AppConstants {
     int API_CALL_TEL_MEMBERSHIP = 1020;
     int API_CALL_PERSON_NAME_FAMILY = 1021;
     int API_CALL_CODE_GHARARDAD = 1022;
+    int API_CALL_LIST_DETAIL_FACTOR = 102;
 
     String REQUEST_KEY_USER_NAME = "user_name";
     String REQUEST_KEY_PASSWORD = "password";
@@ -60,6 +62,10 @@ public interface AppConstants {
     String REQUEST_KEY_NUMBER_LOCKER_CARD = "card_number";
     String REQUEST_KEY_CODE_GHARARDAD = "finger_print";
     String REQUEST_KEY_TEL_MEMBERSHIP = "phone";
+    String REQUEST_KEY_IS_PERSON = "is_person";
+    String REQUEST_KEY_IS_DELIVERED = "is_delivered";
+    String REQUEST_KEY_IS_RECEIPT = "is_receipt";
+    String REQUEST_KEY_SALES_INVOICE_ID = "sales_invoice_id";
 
 
 }

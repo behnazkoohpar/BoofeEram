@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimary"
     tools:Context="com.farzam.rest.ui.listFactor.ListFactorActivity">
 
     <data>
@@ -17,6 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -50,258 +50,263 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@color/colorAccent">
-
-                <ImageView
-                    android:id="@+id/img"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:onClick="@{()->viewModel.sortClick()}"
-                    android:src="@drawable/ic_sort"
-                    android:tint="@color/white" />
-
-                <TextView
-                    style="@style/AppTheme.TextViewWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/img"
-                    android:onClick="@{()->viewModel.filterClick()}"
-                    android:text="مرتب سازی" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@color/colorAccent">
-
-                <ImageView
-                    android:id="@+id/img2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:onClick="@{()->viewModel.filterClick()}"
-                    android:src="@drawable/ic_filter"
-                    android:tint="@color/white" />
-
-                <TextView
-                    android:id="@+id/textday"
-                    style="@style/AppTheme.TextViewWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_toLeftOf="@+id/img2"
-                    android:onClick="@{()->viewModel.filterClick()}"
-                    android:text="@{viewModel.day}" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutFilter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:orientation="vertical"
-            android:visibility="visible">
-
-            <RelativeLayout
-                android:id="@+id/today"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal">
+                android:layout_marginTop="@dimen/margin_small">
 
-                <RadioButton
-                    android:id="@+id/rtoday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:checked="@{viewModel.today}"
-                    android:onClick="@{()->viewModel.clickToday()}" />
+                    <TextView
+                        android:id="@+id/txtStatus"
+                        style="@style/AppTheme.font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_normal"
+                        android:text="@string/status"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
 
-                <TextView
-                    android:id="@+id/txtToday"
-                    style="@style/AppTheme.font"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/rtoday"
-                    android:text="@string/today"
-                    android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:onClick="@{()->viewModel.clickToday()}" />
-            </RelativeLayout>
+                    <RadioButton
+                        android:id="@+id/delivered"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_mini_mini_small"
+                        android:layout_toLeftOf="@+id/txtStatus"
+                        android:checked="@{viewModel.delivered}"
+                        android:onClick="@{()->viewModel.clickDelivered()}" />
 
-            <RelativeLayout
-                android:id="@+id/month"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal">
+                    <TextView
+                        android:id="@+id/txtdelivered"
+                        style="@style/AppTheme.font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/delivered"
+                        android:onClick="@{()->viewModel.clickDelivered()}"
+                        android:text="@string/delivered"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
 
-                <RadioButton
-                    android:id="@+id/rmonth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_large"
-                    android:checked="@{viewModel.month}"
-                    android:onClick="@{()->viewModel.clickMonth()}" />
+                    <RadioButton
+                        android:id="@+id/notdelivered"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:layout_toLeftOf="@+id/txtdelivered"
+                        android:checked="@{viewModel.notdelivered}"
+                        android:onClick="@{()->viewModel.clickNotDelivered()}" />
 
-                <TextView
-                    android:id="@+id/txtMonth"
-                    style="@style/AppTheme.font"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/rmonth"
-                    android:text="@string/month"
-                    android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:onClick="@{()->viewModel.clickMonth()}"/>
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/txtnotdelivered"
+                        style="@style/AppTheme.font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/notdelivered"
+                        android:onClick="@{()->viewModel.clickNotDelivered()}"
+                        android:text="@string/notdelivered"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
 
-            <RelativeLayout
-                android:id="@+id/date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:layout_marginBottom="@dimen/margin_normal">
+                    <RadioButton
+                        android:id="@+id/all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:layout_toLeftOf="@+id/txtnotdelivered"
+                        android:checked="@{viewModel.all}"
+                        android:onClick="@{()->viewModel.clickAll()}" />
 
-                <RadioButton
-                    android:id="@+id/rDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_large"
-                    android:checked="@{viewModel.date}"
-                    android:onClick="@{()->viewModel.clickFromDate()}" />
+                    <TextView
+                        android:id="@+id/txtall"
+                        style="@style/AppTheme.font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/all"
+                        android:onClick="@{()->viewModel.clickAll()}"
+                        android:text="@string/all"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/txtDate"
                     style="@style/AppTheme.font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/fromDate"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/rDate"
+                    android:layout_marginLeft="@dimen/margin_normal"
                     android:text="@string/fromDate"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:onClick="@{()->viewModel.clickFromDate()}"/>
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/fromDate"
                     style="@style/AppTheme.EditTextWhite"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/txtDate"
-                    android:enabled="@{viewModel.fromDate}"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_toRightOf="@+id/txtToDate"
                     android:imeOptions="actionNext"
+                    android:layout_centerVertical="true"
                     android:inputType="date"
                     android:maxLength="10"
                     android:onClick="@{()->viewModel.clickFromDate()}" />
+
                 <TextView
-                    android:id="@+id/txtTime"
+                    android:id="@+id/txtToDate"
                     style="@style/AppTheme.font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/fromDate"
-                    android:text="@string/fromTime"
-                    android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:onClick="@{()->viewModel.clickFromTime()}"/>
-
-                <TextView
-                    android:id="@+id/fromTime"
-                    style="@style/AppTheme.EditTextWhite"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/txtTime"
-                    android:enabled="@{viewModel.fromTime}"
-                    android:imeOptions="actionNext"
-                    android:inputType="date"
-                    android:maxLength="10"
-                    android:onClick="@{()->viewModel.clickFromTime()}" />
-
-                <TextView
-                    android:id="@+id/txttoDate"
-                    style="@style/AppTheme.font"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/fromTime"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_toRightOf="@+id/toDate"
                     android:text="@string/toDate"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:onClick="@{()->viewModel.clickToDate()}" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/toDate"
                     style="@style/AppTheme.EditTextWhite"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/txttoDate"
-                    android:enabled="@{viewModel.toDate}"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_alignParentLeft="true"
                     android:imeOptions="actionNext"
                     android:inputType="date"
                     android:maxLength="10"
-                    android:onClick="@{()->viewModel.clickToDate()}"/>
+                    android:onClick="@{()->viewModel.clickToDate()}" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small">
 
                 <TextView
-                    android:id="@+id/txttoTime"
+                    android:id="@+id/txtType"
+                    style="@style/AppTheme.font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:text="@string/typeFactor"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+                <RadioButton
+                    android:id="@+id/locker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_mini_mini_small"
+                    android:layout_toLeftOf="@+id/txtType"
+                    android:checked="@{viewModel.locker}"
+                    android:onClick="@{()->viewModel.clickLocker()}" />
+
+                <TextView
+                    android:id="@+id/txtlocker"
                     style="@style/AppTheme.font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/toDate"
-                    android:text="@string/toTime"
+                    android:layout_toLeftOf="@+id/locker"
+                    android:onClick="@{()->viewModel.clickLocker()}"
+                    android:text="@string/remember_locker"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:onClick="@{()->viewModel.clickToTime()}" />
+                    android:textSize="16dp" />
+
+                <RadioButton
+                    android:id="@+id/withoutReception"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:layout_toLeftOf="@+id/txtlocker"
+                    android:checked="@{viewModel.withoutReception}"
+                    android:onClick="@{()->viewModel.clickWithoutReception()}" />
 
                 <TextView
-                    android:id="@+id/toTime"
-                    style="@style/AppTheme.EditTextWhite"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:layout_marginRight="@dimen/margin_normal"
-                    android:layout_toLeftOf="@+id/txttoTime"
-                    android:enabled="@{viewModel.toTime}"
-                    android:imeOptions="actionNext"
-                    android:inputType="date"
-                    android:maxLength="10"
-                    android:onClick="@{()->viewModel.clickToTime()}"/>
+                    android:id="@+id/txtwithoutReception"
+                    style="@style/AppTheme.font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/withoutReception"
+                    android:onClick="@{()->viewModel.clickWithoutReception()}"
+                    android:text="@string/withoutReception"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
 
+                <RadioButton
+                    android:id="@+id/personel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:layout_toLeftOf="@+id/txtwithoutReception"
+                    android:checked="@{viewModel.personel}"
+                    android:onClick="@{()->viewModel.clickPersonel()}" />
+
+                <TextView
+                    android:id="@+id/txtpersonel"
+                    style="@style/AppTheme.font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/personel"
+                    android:onClick="@{()->viewModel.clickPersonel()}"
+                    android:text="@string/personel"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+                <RadioButton
+                    android:id="@+id/alltypeFactor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:layout_toLeftOf="@+id/txtpersonel"
+                    android:checked="@{viewModel.alltypeFactor}"
+                    android:onClick="@{()->viewModel.clickAllTypeFactor()}" />
+
+                <TextView
+                    android:id="@+id/txtallypeFactor"
+                    style="@style/AppTheme.font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/alltypeFactor"
+                    android:onClick="@{()->viewModel.clickAllTypeFactor()}"
+                    android:text="@string/all"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    style="@style/AppTheme.ButtonGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/txtallypeFactor"
+                    android:imeOptions="actionDone"
+                    android:onClick="@{() -> viewModel.onReportClick()}"
+                    android:text="@string/report"
+                    android:textSize="@dimen/font_size_large" />
             </RelativeLayout>
 
         </LinearLayout>

@@ -1,16 +1,13 @@
 package com.farzam.rest.ui.listFactor;
 
 import android.app.Activity;
-import android.database.Observable;
 import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.farzam.rest.R;
 import com.farzam.rest.api.BaseCallback;
 import com.farzam.rest.api.ICallApi;
 import com.farzam.rest.data.DataManager;
+import com.farzam.rest.data.model.api.ListFactorDetailResponse;
 import com.farzam.rest.data.model.api.ListFactorResponse;
 import com.farzam.rest.data.model.api.base.Data;
 import com.farzam.rest.ui.base.BaseViewModel;
@@ -25,14 +22,13 @@ import retrofit2.Response;
 public class ListFactorViewModel extends BaseViewModel<ListFactorNavigator> implements AppConstants {
 
     Activity mActivity;
-    public ObservableBoolean today = new ObservableBoolean(true);
-    public ObservableBoolean month = new ObservableBoolean(false);
-    public ObservableBoolean date = new ObservableBoolean(false);
-    public ObservableBoolean fromDate = new ObservableBoolean(false);
-    public ObservableBoolean fromTime = new ObservableBoolean(false);
-    public ObservableBoolean toDate = new ObservableBoolean(false);
-    public ObservableBoolean toTime = new ObservableBoolean(false);
-    public final ObservableField<String> day = new ObservableField<>();
+    public ObservableBoolean all = new ObservableBoolean(true);
+    public ObservableBoolean delivered = new ObservableBoolean(false);
+    public ObservableBoolean notdelivered = new ObservableBoolean(false);
+    public ObservableBoolean alltypeFactor = new ObservableBoolean(true);
+    public ObservableBoolean locker = new ObservableBoolean(false);
+    public ObservableBoolean withoutReception = new ObservableBoolean(false);
+    public ObservableBoolean personel = new ObservableBoolean(false);
 
     public ListFactorViewModel(DataManager dataManager) {
         super(dataManager);
@@ -42,96 +38,87 @@ public class ListFactorViewModel extends BaseViewModel<ListFactorNavigator> impl
         this.mActivity = mActivity;
     }
 
-    public void clickToday() {
-        today.set(true);
-        month.set(false);
-        date.set(false);
-        fromDate.set(false);
-        fromTime.set(false);
-        toDate.set(false);
-        toTime.set(false);
-        getNavigator().toUpAnim();
-        day.set("روز جاری");
-        getNavigator().setToday();
+    public void onReportClick() {
+        getNavigator().onReportClick();
     }
 
-    public void clickMonth() {
-        today.set(false);
-        month.set(true);
-        date.set(false);
-        fromDate.set(false);
-        fromTime.set(false);
-        toDate.set(false);
-        toTime.set(false);
-        getNavigator().toUpAnim();
-        day.set("ماه جاری");
-        getNavigator().setMonth();
+    public void clickAll() {
+        all.set(true);
+        delivered.set(false);
+        notdelivered.set(false);
+        getNavigator().setDelivered(0);
+    }
+
+    public void clickDelivered() {
+        all.set(false);
+        delivered.set(true);
+        notdelivered.set(false);
+        getNavigator().setDelivered(1);
+    }
+
+    public void clickNotDelivered() {
+        all.set(false);
+        delivered.set(false);
+        notdelivered.set(true);
+        getNavigator().setDelivered(2);
+    }
+
+    public void clickLocker() {
+        locker.set(true);
+        withoutReception.set(false);
+        alltypeFactor.set(false);
+        personel.set(false);
+        getNavigator().setPersonRecieved(2, 1);
+    }
+
+    public void clickWithoutReception() {
+        locker.set(false);
+        withoutReception.set(true);
+        alltypeFactor.set(false);
+        personel.set(false);
+        getNavigator().setPersonRecieved(2, 2);
+    }
+
+    public void clickPersonel() {
+        locker.set(false);
+        withoutReception.set(false);
+        alltypeFactor.set(false);
+        personel.set(true);
+        getNavigator().setPersonRecieved(1, 2);
+    }
+
+    public void clickAllTypeFactor() {
+        locker.set(false);
+        withoutReception.set(false);
+        alltypeFactor.set(true);
+        personel.set(false);
+        getNavigator().setPersonRecieved(0, 0);
     }
 
     public void clickFromDate() {
-        today.set(false);
-        month.set(false);
-        date.set(true);
-        fromDate.set(true);
-        toDate.set(true);
-        fromTime.set(true);
-        toTime.set(true);
-        day.set("تاریخ درخواستی");
         getNavigator().openFromDateCalendar();
     }
 
-    public void clickFromTime() {
-        today.set(false);
-        month.set(false);
-        date.set(true);
-        fromDate.set(true);
-        toDate.set(true);
-        fromTime.set(true);
-        toTime.set(true);
-        day.set("تاریخ درخواستی");
-        getNavigator().openFromTimeCalendar();
-    }
-
     public void clickToDate() {
-        today.set(false);
-        month.set(false);
-        date.set(true);
-        fromDate.set(true);
-        toDate.set(true);
-        fromTime.set(true);
-        toTime.set(true);
-        day.set("تاریخ درخواستی");
         getNavigator().openToDateCalendar();
-    }
-
-    public void clickToTime() {
-        today.set(false);
-        month.set(false);
-        date.set(true);
-        fromDate.set(true);
-        toDate.set(true);
-        fromTime.set(true);
-        toTime.set(true);
-        day.set("تاریخ درخواستی");
-        getNavigator().openToTimeCalendar();
-    }
-
-    public void filterClick() {
-        getNavigator().filterClick();
-
-    }
-
-    public void sortClick() {
-
-        getNavigator().toUpAnim();
-//        getNavigator().filterClick();
-
     }
 
     public void getListFactor(ICallApi iCallApi, ListFactorActivity context, HashMap<String, String> map) {
         try {
             BaseCallback baseCallback = new BaseCallback(context, true, iCallApi, getDataManager(), API_CALL_LIST_FACTOR, this);
             iCallApi.getListFactor(map).enqueue(baseCallback);
+            setIsLoading(true);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.not_can_call), null, null);
+            e.printStackTrace();
+        }
+    }
+
+
+    public void getListDetailFactor(ICallApi iCallApi, ListFactorActivity context, HashMap<String, String> map) {
+        try {
+            BaseCallback baseCallback = new BaseCallback(context, true, iCallApi, getDataManager(), API_CALL_LIST_DETAIL_FACTOR, this);
+            iCallApi.getListDetailFactor(map).enqueue(baseCallback);
             setIsLoading(true);
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.not_can_call), null, null);
@@ -149,9 +136,13 @@ public class ListFactorViewModel extends BaseViewModel<ListFactorNavigator> impl
                 CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), data.getSettings().getMessage(), null, null);
             } else {
                 switch (requestCode) {
-                    case API_CALL_STUFF_LIST:
+                    case API_CALL_LIST_FACTOR:
                         List<ListFactorResponse> listFactorResponses = data.getData();
                         getNavigator().setList(listFactorResponses);
+                        break;
+                    case API_CALL_LIST_DETAIL_FACTOR:
+                        List<ListFactorDetailResponse> listFactorDetailResponses = data.getData();
+                        getNavigator().setListDetail(listFactorDetailResponses);
                         break;
                 }
             }
@@ -172,4 +163,6 @@ public class ListFactorViewModel extends BaseViewModel<ListFactorNavigator> impl
         setIsLoading(false);
         CommonUtils.showSingleButtonAlert(mActivity, mActivity.getString(R.string.text_attention), mActivity.getString(R.string.authentication_failed), mActivity.getString(R.string.btn_ok), null);
     }
+
+
 }

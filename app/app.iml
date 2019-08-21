@@ -212,8 +212,5 @@
     <orderEntry type="library" name="Gradle: com.android.support:swiperefreshlayout:28.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.android.support.test.espresso:espresso-intents:3.0.2@aar" level="project" />
     <orderEntry type="module" module-name="MaterialDatePicker" />
-    <orderEntry type="module" module-name="MaterialDatePicker" />
-    <orderEntry type="module" module-name="MaterialDatePicker" />
-    <orderEntry type="module" module-name="MaterialDatePicker" />
   </component>
 </module>

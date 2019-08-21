@@ -4,6 +4,7 @@ import android.app.DownloadManager;
 
 import com.farzam.rest.data.model.api.CardInfoResponse;
 import com.farzam.rest.data.model.api.HistoryResponse;
+import com.farzam.rest.data.model.api.ListFactorDetailResponse;
 import com.farzam.rest.data.model.api.ListFactorResponse;
 import com.farzam.rest.data.model.api.LockerInfoResponse;
 import com.farzam.rest.data.model.api.LoginResponse;
@@ -83,9 +84,17 @@ public interface ICallApi {
     @POST("/WS/set_factor_for_azad")
     Call<Data> callSetFactorAzad(@FieldMap HashMap<String, String> map);
 
+//    @FormUrlEncoded
+//    @POST("/WS/get_list_factor")
+//    Call<Data<ListFactorResponse>> getListFactor(@FieldMap HashMap<String, String> map);
+
     @FormUrlEncoded
-    @POST("/WS/get_list_factor")
+    @POST("/WS/get_factor_report")
     Call<Data<ListFactorResponse>> getListFactor(@FieldMap HashMap<String, String> map);
+
+    @FormUrlEncoded
+    @POST("/WS/get_factor_details_report")
+    Call<Data<ListFactorDetailResponse>> getListDetailFactor(@FieldMap HashMap<String, String> map);
 
     @FormUrlEncoded
     @POST("/WS/search_by_name_locker")
@@ -110,4 +119,6 @@ public interface ICallApi {
     @FormUrlEncoded
     @POST("/WS/search_by_finger_print_person")
     Call<Data<CardInfoResponse>> callCodeGharardad(@FieldMap HashMap<String, String> map);
+
+
 }

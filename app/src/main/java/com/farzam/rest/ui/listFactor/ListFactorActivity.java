@@ -5,20 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.farzam.rest.BR;
 import com.farzam.rest.R;
+import com.farzam.rest.data.model.api.ListFactorDetailResponse;
 import com.farzam.rest.data.model.api.ListFactorResponse;
 import com.farzam.rest.databinding.ActivityListFactorBinding;
 import com.farzam.rest.ui.base.BaseActivity;
 import com.farzam.rest.utils.AppConstants;
 import com.farzam.rest.utils.CommonUtils;
 import com.mojtaba.materialdatetimepicker.date.DatePickerDialog;
-import com.mojtaba.materialdatetimepicker.time.RadialPickerLayout;
 import com.mojtaba.materialdatetimepicker.time.TimePickerDialog;
 import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
 
@@ -30,8 +27,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class ListFactorActivity extends BaseActivity<ActivityListFactorBinding, ListFactorViewModel> implements ListFactorNavigator, AppConstants,
-        DatePickerDialog.OnDateSetListener,
-        TimePickerDialog.OnTimeSetListener {
+        DatePickerDialog.OnDateSetListener, OnItemClickListener {
 
     @Inject
     ListFactorViewModel mListFactorViewModel;
@@ -46,11 +42,14 @@ public class ListFactorActivity extends BaseActivity<ActivityListFactorBinding, 
     private Calendar nowCal;
     private boolean selectedDateFrom;
     private boolean selectedTimeFrom;
-    private int mYear;
-    private int mMonth;
-    private int mDay;
-    private int mhour;
-    private int mMinute;
+    private String mYear;
+    private String mMonth;
+    private String mDay;
+    private int isDelivered;
+    private int isPerson;
+    private int isRecipt;
+    private ListFactorAdapter.ViewHolder viewholder;
+    private int positionn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +58,18 @@ public class ListFactorActivity extends BaseActivity<ActivityListFactorBinding, 
         mListFactorViewModel.setNavigator(this);
         mListFactorViewModel.setActivity(ListFactorActivity.this);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        mActivityListFactorBinding.textday.setText(R.string.today);
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-        mhour = c.get(Calendar.HOUR_OF_DAY);
-        mMinute = c.get(Calendar.MINUTE);
+
+        PersianCalendar persianCalendar = new PersianCalendar();
+        mYear = String.valueOf(persianCalendar.getPersianYear());
+        mMonth = String.valueOf(persianCalendar.getPersianMonth() + 1);
+        mDay = String.valueOf(persianCalendar.getPersianDay());
+        if (Integer.parseInt(mMonth) < 10)
+            mMonth = "0" + mMonth;
+        if (Integer.parseInt(mDay) < 10)
+            mDay = "0" + mDay;
+        mActivityListFactorBinding.fromDate.setText(mYear + "/" + mMonth + "/" + mDay);
+        mActivityListFactorBinding.toDate.setText(mYear + "/" + mMonth + "/" + mDay);
+
 //        getListfactor();
     }
 
@@ -76,27 +80,19 @@ public class ListFactorActivity extends BaseActivity<ActivityListFactorBinding, 
     }
 
     @Override
-    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-        if (selectedTimeFrom) {
-            String time = hourOfDay + ":" + minute;
-            mActivityListFactorBinding.fromTime.setText(time);
-        } else {
-            String time = hourOfDay + ":" + minute;
-            mActivityListFactorBinding.toTime.setText(time);
-
-        }
-    }
-
-    @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String month = String.valueOf(monthOfYear + 1);
+        String day = String.valueOf(dayOfMonth);
+        if ((monthOfYear + 1) < 10)
+            month = "0" + (monthOfYear + 1);
+        if (dayOfMonth < 10)
+            day = "0" + dayOfMonth;
         if (selectedDateFrom) {
-            String date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
+            String date = year + "/" + (month) + "/" + day;
             mActivityListFactorBinding.fromDate.setText(date);
         } else {
-            String date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
+            String date = year + "/" + (month) + "/" + day;
             mActivityListFactorBinding.toDate.setText(date);
-            toUpAnim();
-            getListfactor();
         }
     }
 
@@ -115,29 +111,6 @@ public class ListFactorActivity extends BaseActivity<ActivityListFactorBinding, 
         return R.layout.activity_list_factor;
     }
 
-    @Override
-    public void setToday() {
-        mActivityListFactorBinding.fromDate.setText(now.getPersianYear() + "/" + now.getPersianMonth() + "/" + now.getPersianDay());
-        mActivityListFactorBinding.fromTime.setText("00:00");
-        mActivityListFactorBinding.toDate.setText(now.getPersianYear() + "/" + now.getPersianMonth() + "/" + now.getPersianDay());
-        mActivityListFactorBinding.toTime.setText("23:59");
-
-        getListfactor();
-    }
-
-    @Override
-    public void setMonth() {
-
-//        mActivityListFactorBinding.fromDate.setText(now.getPersianYear() + "/" + now.getPersianMonth() + "/01");
-//        mActivityListFactorBinding.fromTime.setText("00:00");
-//        if (now.getPersianMonth() <= 6)
-//            mActivityListFactorBinding.toDate.setText(now.getPersianYear() + "/" + now.getPersianMonth() + "/31");
-//        else
-//            mActivityListFactorBinding.toDate.setText(now.getPersianYear() + "/" + now.getPersianMonth() + "/30");
-//        mActivityListFactorBinding.toTime.setText("23:59");
-
-//        getListfactor();
-    }
 
     @Override
     public void openFromDateCalendar() {
@@ -150,19 +123,6 @@ public class ListFactorActivity extends BaseActivity<ActivityListFactorBinding, 
         );
         selectedDateFrom = true;
         dpd.show(getFragmentManager(), "Datepickerdialog");
-    }
-
-    @Override
-    public void openFromTimeCalendar() {
-        nowCal = Calendar.getInstance();
-        tpd = TimePickerDialog.newInstance(
-                this,
-                nowCal.get(Calendar.HOUR_OF_DAY),
-                nowCal.get(Calendar.MINUTE),
-                true
-        );
-        selectedTimeFrom = true;
-        tpd.show(getFragmentManager(), "Datepickerdialog");
     }
 
     @Override
@@ -179,45 +139,46 @@ public class ListFactorActivity extends BaseActivity<ActivityListFactorBinding, 
     }
 
     @Override
-    public void openToTimeCalendar() {
-        nowCal = Calendar.getInstance();
-        tpd = TimePickerDialog.newInstance(
-                this,
-                nowCal.get(Calendar.HOUR_OF_DAY),
-                nowCal.get(Calendar.MINUTE),
-                true
-        );
-        selectedTimeFrom = false;
-        tpd.show(getFragmentManager(), "Datepickerdialog");
+    public void setDelivered(int i) {
+        isDelivered = i;
     }
 
     @Override
-    public void filterClick() {
-        Animation slide_down = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.to_down_animate);
-        slide_down.setDuration(500);
-        mActivityListFactorBinding.layoutFilter.setVisibility(View.VISIBLE);
-        mActivityListFactorBinding.layoutFilter.startAnimation(slide_down);
+    public void setPersonRecieved(int i, int i1) {
+        isPerson = i;
+        isRecipt = i1;
     }
 
     @Override
-    public void toUpAnim() {
-        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.to_up_animate);
-//        slide_up.setDuration(1200);
-        mActivityListFactorBinding.layoutFilter.setVisibility(View.GONE);
-        mActivityListFactorBinding.layoutFilter.startAnimation(slide_up);
-    }
-
-    private void getListfactor() {
+    public void onReportClick() {
         try {
             HashMap<String, String> map = new HashMap<>();
             map.put(REQUEST_KEY_RECEPTON_UNIT, mListFactorViewModel.getDataManager().getReception());
+            map.put(REQUEST_KEY_ORGANIZATION_UNIT, mListFactorViewModel.getDataManager().getOrganizationalPosition());
             map.put(REQUEST_KEY_FROM_DATE, mActivityListFactorBinding.fromDate.getText().toString());
             map.put(REQUEST_KEY_TO_DATE, mActivityListFactorBinding.toDate.getText().toString());
-            map.put(REQUEST_KEY_FROM_TIME,mActivityListFactorBinding.fromTime.getText().toString());
-            map.put(REQUEST_KEY_TO_TIME, mActivityListFactorBinding.toTime.getText().toString());
+            map.put(REQUEST_KEY_IS_DELIVERED, String.valueOf(isDelivered));
+            map.put(REQUEST_KEY_IS_PERSON, String.valueOf(isPerson));
+            map.put(REQUEST_KEY_IS_RECEIPT, String.valueOf(isRecipt));
             if (LOGTRUE)
                 Log.d("mPARAMS :::::::: ", map.toString());
             mListFactorViewModel.getListFactor(iCallApi, this, map);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void callDetailFactor(ListFactorAdapter.ViewHolder viewHolder, int position, String id) {
+        try {
+            viewholder = viewHolder;
+            positionn = position;
+            HashMap<String, String> map = new HashMap<>();
+            map.put(REQUEST_KEY_SALES_INVOICE_ID, id);
+            if (LOGTRUE)
+                Log.d("mPARAMS :::::::: ", map.toString());
+            mListFactorViewModel.getListDetailFactor(iCallApi, this, map);
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -232,10 +193,15 @@ public class ListFactorActivity extends BaseActivity<ActivityListFactorBinding, 
         mActivityListFactorBinding.list.setLayoutManager(layoutManagerListSelectedStuff);
         mAdapter = new ListFactorAdapter(listFactors);
         mActivityListFactorBinding.list.setAdapter(mAdapter);
+        mAdapter.setOnitemclickListener(this);
     }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
+    public void setListDetail(List<ListFactorDetailResponse> listFactorDetailResponses) {
+        listFactors.get(positionn).setListFactorDetailResponseList(listFactorDetailResponses);
 
+//        mAdapter.setListInList(viewholder,positionn,listFactorDetailResponses);
+        mAdapter.notifyDataSetChanged();
     }
+
 }
