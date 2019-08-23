@@ -8,6 +8,8 @@
     <color name="gray">#a9a9a9</color>
     <color name="path_color">#faa519</color>
     <color name="red_color">#7e0c18</color>
+    <color name="web">#048BF3</color>
+    <color name="purple">#E067F5</color>
 
     <color name="mdtp_accent_color">#7e0c18</color>
     <color name="mdtp_accent_color_dark">#7e0c18</color>

@@ -131,6 +131,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
+                        android:tint="@color/colorPrimaryDark"
                         android:src="@drawable/tablet"
                         android:visibility="gone" />
 
@@ -140,6 +141,7 @@
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:src="@drawable/web"
+                        android:tint="@color/web"
                         android:visibility="gone" />
 
                     <ImageView
@@ -147,6 +149,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
+                        android:tint="@color/green_800"
                         android:src="@drawable/accept"
                         android:visibility="gone" />
 
@@ -156,6 +159,7 @@
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:src="@drawable/print"
+
                         android:visibility="gone" />
                 </LinearLayout>
 
@@ -234,6 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
                     android:text="نام و نام خانوادگی عضویت:"
                     android:visibility="gone" />
@@ -243,6 +248,7 @@
                     style="@style/AppTheme.TextViewLableBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@+id/txtName"
                     android:visibility="gone" />
@@ -251,6 +257,7 @@
                     android:id="@+id/txtPersonelName"
                     style="@style/AppTheme.TextViewLableYello"
                     android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
@@ -263,12 +270,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/txtPersonelName"
                     android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/showDetail"
                     android:orientation="horizontal">
 
@@ -276,14 +285,20 @@
                         android:id="@+id/personImage"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:padding="@dimen/padding_small"
                         android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/user"
+                        android:tint="@color/gray_400"
                         android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/reception"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:padding="3dp"
+                        android:tint="@color/green_800"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
                         android:src="@drawable/reception"
                         android:visibility="gone" />
@@ -292,6 +307,8 @@
                         android:id="@+id/cardImage"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:tint="@color/purple"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
                         android:src="@drawable/person"
                         android:visibility="gone" />
@@ -302,6 +319,8 @@
                     style="@style/AppTheme.ButtonOrange"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
+                    android:layout_marginRight="@dimen/margin_normal"
+                    android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:padding="@dimen/padding_small"
                     android:text="نمایش اقلام فاکتور" />

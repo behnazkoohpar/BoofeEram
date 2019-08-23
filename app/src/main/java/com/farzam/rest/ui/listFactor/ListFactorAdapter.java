@@ -158,10 +158,10 @@ public class ListFactorAdapter extends RecyclerView.Adapter<ListFactorAdapter.Vi
         viewHolder.showDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (viewHolder.layout.getVisibility() > 0)
+//                if (viewHolder.layout.getVisibility() > 0)
                     viewHolder.layout.setVisibility(View.VISIBLE);
-                else
-                    viewHolder.layout.setVisibility(View.GONE);
+//                else
+//                    viewHolder.layout.setVisibility(View.GONE);
 
                 listener.callDetailFactor(viewHolder, position, stList.get(position).getSalesInvoiceID());
 
