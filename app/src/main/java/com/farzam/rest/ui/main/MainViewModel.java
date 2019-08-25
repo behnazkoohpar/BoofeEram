@@ -45,13 +45,13 @@ public class MainViewModel extends BaseViewModel<MainNavigator> implements AppCo
     }
 
     public void setFactor() {
-        if(StartActivity.lockerSelected)
-        getNavigator().setFactor();
-        if(StartActivity.azadSelected)
+        if (StartActivity.lockerSelected)
+            getNavigator().setFactor();
+        if (StartActivity.azadSelected)
             getNavigator().setFactorAzad();
-        if(StartActivity.cardSelected)
+        if (StartActivity.cardSelected)
             getNavigator().setFactorCard();
-        if(StartActivity.personSelected)
+        if (StartActivity.personSelected)
             getNavigator().setFactorPerson();
     }
 
@@ -77,6 +77,7 @@ public class MainViewModel extends BaseViewModel<MainNavigator> implements AppCo
         }
 
     }
+
     public void callSetFactorCard(ICallApi iCallApi, MainActivity context, HashMap<String, String> map) {
         try {
             BaseCallback baseCallback = new BaseCallback(context, true, iCallApi, getDataManager(), API_CALL_SET_FACTOR, this);

@@ -77,15 +77,19 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     private void initView() {
-        if (mStartViewModel.getDataManager().getShowAzad()){
+        cardSelected = false;
+        azadSelected = false;
+        lockerSelected = true;
+        personSelected = false;
+        if (mStartViewModel.getDataManager().getShowAzad()) {
             mActivityStartBinding.rAzad.setVisibility(View.VISIBLE);
             mActivityStartBinding.txtRAzad.setVisibility(View.VISIBLE);
         }
-        if (mStartViewModel.getDataManager().getShowMembership()){
+        if (mStartViewModel.getDataManager().getShowMembership()) {
             mActivityStartBinding.cart.setVisibility(View.VISIBLE);
             mActivityStartBinding.txtRCart.setVisibility(View.VISIBLE);
         }
-        if (mStartViewModel.getDataManager().getShowPersone()){
+        if (mStartViewModel.getDataManager().getShowPersone()) {
             mActivityStartBinding.rPersonel.setVisibility(View.VISIBLE);
             mActivityStartBinding.txtRPersonel.setVisibility(View.VISIBLE);
         }
@@ -118,7 +122,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     @Override
-    public void setPersonInfo(List<CardInfoResponse> cardInfo , int position) {
+    public void setPersonInfo(List<CardInfoResponse> cardInfo, int position) {
         membershipFileID = cardInfo.get(position).getMembershipfileID();
         mActivityStartBinding.namePerson.setText(cardInfo.get(position).getFullName());
         mActivityStartBinding.nameP.setText(cardInfo.get(position).getLockerNumber());
@@ -131,7 +135,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     @Override
-    public void setCardInfo(List<CardInfoResponse> cardInfo , int position) {
+    public void setCardInfo(List<CardInfoResponse> cardInfo, int position) {
         membershipFileID = cardInfo.get(position).getMembershipfileID();
         mActivityStartBinding.namelocker.setText(cardInfo.get(position).getFullName());
         mActivityStartBinding.locker.setText(cardInfo.get(position).getLockerNumber());
@@ -144,7 +148,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     }
 
     @Override
-    public void setLockerInfo(List<LockerInfoResponse> lockerInfo , int position) {
+    public void setLockerInfo(List<LockerInfoResponse> lockerInfo, int position) {
         membershipFileID = lockerInfo.get(position).getMembershipfileID();
         mActivityStartBinding.namefull.setText(lockerInfo.get(position).getFullName());
         mActivityStartBinding.numberCard.setText(lockerInfo.get(position).getCardNumber());
@@ -451,10 +455,10 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
     @Override
     public void callCardTel() {
         try {
-            if (!mActivityStartBinding.telMemberShip.getText().toString().isEmpty() || mActivityStartBinding.telMemberShip.length()<10) {
+            if (!mActivityStartBinding.telMemberShip.getText().toString().isEmpty() || mActivityStartBinding.telMemberShip.length() < 10) {
                 hideKeyboard();
                 HashMap<String, String> map = new HashMap<>();
-                String telNumber ="0"+ mActivityStartBinding.telMemberShip.getText().toString().substring((mActivityStartBinding.telMemberShip.getText().toString().length()-10),mActivityStartBinding.telMemberShip.getText().toString().length());
+                String telNumber = "0" + mActivityStartBinding.telMemberShip.getText().toString().substring((mActivityStartBinding.telMemberShip.getText().toString().length() - 10), mActivityStartBinding.telMemberShip.getText().toString().length());
                 map.put(REQUEST_KEY_TEL_MEMBERSHIP, telNumber);
                 map.put(REQUEST_KEY_ORGANIZATION_UNIT, mStartViewModel.getDataManager().getOrganizationalPosition());
                 if (LOGTRUE)
@@ -513,7 +517,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         if (lockerInfo.size() == 1) {
             mActivityStartBinding.numberLocker.setText("");
             mActivityStartBinding.nameNumberLocker.setText("");
-            setLockerInfo(lockerInfo,0);
+            setLockerInfo(lockerInfo, 0);
         } else {
             final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
             AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
@@ -532,7 +536,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                     String strName = arrayAdapter.getItem(which);
                     mActivityStartBinding.numberLocker.setText("");
                     mActivityStartBinding.nameNumberLocker.setText("");
-                    setLockerInfo(lockerInfo,which);
+                    setLockerInfo(lockerInfo, which);
                 }
             });
         }
@@ -543,7 +547,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         if (lockerInfo.size() == 1) {
             mActivityStartBinding.numberLocker.setText("");
             mActivityStartBinding.numberLockerCard.setText("");
-            setLockerInfo(lockerInfo,0);
+            setLockerInfo(lockerInfo, 0);
         } else {
 
             final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
@@ -563,7 +567,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                     String strName = arrayAdapter.getItem(which);
                     mActivityStartBinding.numberLocker.setText("");
                     mActivityStartBinding.numberLockerCard.setText("");
-                    setLockerInfo(lockerInfo,which);
+                    setLockerInfo(lockerInfo, which);
                 }
             });
             builderSingle.show();
@@ -575,7 +579,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         if (cardInfoResponses1.size() == 1) {
             mActivityStartBinding.memberShip.setText("");
             mActivityStartBinding.telMemberShip.setText("");
-            setCardInfo(cardInfoResponses1,0);
+            setCardInfo(cardInfoResponses1, 0);
         } else {
             final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
             AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
@@ -594,7 +598,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                     String strName = arrayAdapter.getItem(which);
                     mActivityStartBinding.memberShip.setText("");
                     mActivityStartBinding.telMemberShip.setText("");
-                    setCardInfo(cardInfoResponses1,which);
+                    setCardInfo(cardInfoResponses1, which);
                 }
             });
             builderSingle.show();
@@ -606,7 +610,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         if (cardInfoResponses2.size() == 1) {
             mActivityStartBinding.memberShip.setText("");
             mActivityStartBinding.namefamilyMemberShip.setText("");
-            setCardInfo(cardInfoResponses2,0);
+            setCardInfo(cardInfoResponses2, 0);
         } else {
             final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
             AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
@@ -625,7 +629,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                     String strName = arrayAdapter.getItem(which);
                     mActivityStartBinding.memberShip.setText("");
                     mActivityStartBinding.namefamilyMemberShip.setText("");
-                    setCardInfo(cardInfoResponses2,which);
+                    setCardInfo(cardInfoResponses2, which);
                 }
             });
             builderSingle.show();
@@ -637,7 +641,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         if (cardInfoResponses3.size() == 1) {
             mActivityStartBinding.personNumber.setText("");
             mActivityStartBinding.codeGharardad.setText("");
-            setPersonInfo(cardInfoResponses3,0);
+            setPersonInfo(cardInfoResponses3, 0);
         } else {
             final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
             AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
@@ -656,7 +660,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                     String strName = arrayAdapter.getItem(which);
                     mActivityStartBinding.personNumber.setText("");
                     mActivityStartBinding.codeGharardad.setText("");
-                    setPersonInfo(cardInfoResponses3,which);
+                    setPersonInfo(cardInfoResponses3, which);
                 }
             });
             builderSingle.show();
@@ -668,7 +672,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
         if (cardInfoResponses4.size() == 1) {
             mActivityStartBinding.personNumber.setText("");
             mActivityStartBinding.pNameAndFamily.setText("");
-            setPersonInfo(cardInfoResponses4,0);
+            setPersonInfo(cardInfoResponses4, 0);
         } else {
             final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(StartActivity.this, android.R.layout.select_dialog_singlechoice);
             AlertDialog.Builder builderSingle = new AlertDialog.Builder(StartActivity.this);
@@ -687,7 +691,7 @@ public class StartActivity extends BaseActivity<ActivityStartBinding, StartViewM
                     String strName = arrayAdapter.getItem(which);
                     mActivityStartBinding.personNumber.setText("");
                     mActivityStartBinding.pNameAndFamily.setText("");
-                    setPersonInfo(cardInfoResponses4,which);
+                    setPersonInfo(cardInfoResponses4, which);
                 }
             });
             builderSingle.show();
